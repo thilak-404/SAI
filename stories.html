@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>சாயின் அற்புத கதைகள் | Sai Baba Miracles in Tamil</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600&family=Noto+Sans+Tamil:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════
+   ROOT & RESET
+════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#D4AF37;--gold-lt:#FFD700;--gold-pale:#FFF8DC;
+  --saffron:#FF8C00;--saffron-lt:#FFA040;
+  --deep:#0A0500;--dark:#100800;--dark2:#1A0D00;
+  --card:#120800;--card2:#1E1000;
+  --cream:#FFF5E1;--cream2:#FFE8B0;
+  --text:#F5E6C8;--text-dim:rgba(245,230,200,0.6);
+  --border:rgba(212,175,55,0.22);
+  --border-bright:rgba(212,175,55,0.55);
+  --cat-color:#FF8C00;
+}
+
+html{
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+}
+
+body{
+  background:var(--deep);
+  font-family:'Noto Sans Tamil','Noto Serif Tamil',sans-serif;
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* ════════════════════════════════════
+   CANVAS — fixed bg particles
+════════════════════════════════════ */
+#bg-canvas{
+  position:fixed;inset:0;
+  width:100%;height:100%;
+  pointer-events:none;z-index:0;
+}
+
+/* ════════════════════════════════════
+   GRADIENT BG
+════════════════════════════════════ */
+.bg-layer{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%,rgba(212,175,55,0.12) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 0% 100%,rgba(255,140,0,0.07) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 100%,rgba(180,80,0,0.06) 0%,transparent 55%),
+    linear-gradient(180deg,#0A0500 0%,#120800 50%,#0A0500 100%);
+}
+
+/* ════════════════════════════════════
+   BACK BUTTON
+════════════════════════════════════ */
+#back-btn{
+  position:fixed;top:14px;left:14px;z-index:200;
+  display:flex;align-items:center;gap:6px;
+  padding:8px 14px;border-radius:24px;
+  border:1px solid rgba(212,175,55,0.35);
+  background:rgba(10,5,0,0.85);
+  color:var(--gold);
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;
+  cursor:pointer;text-decoration:none;
+  backdrop-filter:blur(8px);
+  transition:all .25s;
+  -webkit-tap-highlight-color:transparent;
+}
+#back-btn:hover{border-color:var(--gold-lt);box-shadow:0 0 16px rgba(212,175,55,0.3);}
+
+/* ════════════════════════════════════
+   MUSIC CONTROLS — fixed top right
+════════════════════════════════════ */
+#music-ctrl{
+  position:fixed;top:14px;right:14px;z-index:200;
+  display:flex;align-items:center;gap:8px;
+  padding:8px 14px;border-radius:24px;
+  border:1px solid rgba(212,175,55,0.30);
+  background:rgba(10,5,0,0.85);
+  backdrop-filter:blur(8px);
+  transition:all .25s;
+}
+#music-toggle{
+  background:none;border:1px solid rgba(212,175,55,0.4);
+  border-radius:50%;width:28px;height:28px;
+  cursor:pointer;font-size:11px;
+  color:var(--gold-lt);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+#music-toggle:hover{background:rgba(212,175,55,0.15);}
+#music-label{
+  font-family:'Cinzel',serif;font-size:9px;
+  letter-spacing:1px;color:rgba(212,175,55,0.6);
+  white-space:nowrap;
+}
+.music-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold-lt);
+  box-shadow:0 0 6px rgba(255,215,0,.8);
+  animation:dotPulse 1.4s ease-in-out infinite;
+  display:none;
+}
+@keyframes dotPulse{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+
+/* ════════════════════════════════════
+   HEADER
+════════════════════════════════════ */
+#page-header{
+  position:relative;z-index:10;
+  text-align:center;
+  padding:70px 20px 30px;
+}
+.om-symbol{
+  font-family:'Noto Serif Tamil',serif;
+  font-size:clamp(2rem,8vw,3.5rem);
+  color:var(--gold-lt);
+  display:block;margin-bottom:8px;
+  filter:drop-shadow(0 0 20px rgba(255,215,0,.7));
+  animation:omGlow 4s ease-in-out infinite;
+}
+@keyframes omGlow{
+  0%,100%{filter:drop-shadow(0 0 15px rgba(255,215,0,.5));}
+  50%{filter:drop-shadow(0 0 35px rgba(255,215,0,1)) drop-shadow(0 0 60px rgba(212,175,55,.4));}
+}
+.page-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(1.2rem,5vw,2.2rem);
+  font-weight:900;letter-spacing:3px;
+  background:linear-gradient(180deg,#FFF8E1 0%,#FFD700 30%,#D4AF37 60%,#FFD700 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 14px rgba(212,175,55,.7));
+  margin-bottom:6px;
+}
+.page-subtitle{
+  font-family:'Noto Serif Tamil',serif;
+  font-size:clamp(1rem,3.5vw,1.3rem);
+  color:var(--saffron);letter-spacing:2px;opacity:.85;
+  margin-bottom:10px;
+}
+.header-divider{
+  display:flex;align-items:center;gap:12px;
+  max-width:360px;margin:12px auto;
+}
+.hdiv-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.hdiv-gem{color:var(--gold-lt);font-size:11px;letter-spacing:6px;opacity:.8;}
+.story-count-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(212,175,55,0.1);
+  border:1px solid rgba(212,175,55,0.3);
+  border-radius:20px;padding:5px 16px;
+  font-size:11px;letter-spacing:1.5px;
+  color:rgba(212,175,55,0.75);
+  margin-top:6px;
+}
+
+/* ════════════════════════════════════
+   SEARCH & FILTER
+════════════════════════════════════ */
+#controls-bar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,4,0,0.92);
+  border-bottom:1px solid rgba(212,175,55,0.12);
+  backdrop-filter:blur(14px);
+  padding:12px 16px;
+}
+.search-wrap{
+  max-width:600px;margin:0 auto 10px;
+  position:relative;
+}
+#search-input{
+  width:100%;
+  background:rgba(20,10,0,0.8);
+  border:1px solid rgba(212,175,55,0.28);
+  border-radius:10px;
+  color:var(--cream);
+  font-family:'Noto Sans Tamil',sans-serif;
+  font-size:14px;padding:10px 40px 10px 14px;
+  outline:none;transition:border-color .3s,box-shadow .3s;
+}
+#search-input::placeholder{color:rgba(212,175,55,0.35);}
+#search-input:focus{border-color:rgba(212,175,55,0.55);box-shadow:0 0 16px rgba(212,175,55,.1);}
+.search-icon{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  color:rgba(212,175,55,0.45);font-size:14px;pointer-events:none;
+}
+.cat-scroll{
+  display:flex;gap:6px;overflow-x:auto;
+  max-width:600px;margin:0 auto;
+  padding-bottom:2px;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.cat-scroll::-webkit-scrollbar{display:none;}
+.cat-btn{
+  flex-shrink:0;
+  background:rgba(20,10,0,0.7);
+  border:1px solid rgba(212,175,55,0.2);
+  border-radius:20px;
+  color:rgba(212,175,55,0.6);
+  font-family:'Noto Sans Tamil',sans-serif;
+  font-size:12px;padding:5px 13px;
+  cursor:pointer;transition:all .2s;white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;
+}
+.cat-btn:hover,.cat-btn.active{
+  background:rgba(212,175,55,0.16);
+  border-color:var(--gold);color:var(--gold-lt);
+}
+
+/* ════════════════════════════════════
+   STORY COUNT DISPLAY
+════════════════════════════════════ */
+#results-info{
+  text-align:center;
+  padding:10px 16px 2px;
+  font-size:11px;letter-spacing:1px;
+  color:rgba(212,175,55,0.4);
+  position:relative;z-index:5;
+}
+
+/* ════════════════════════════════════
+   STORIES GRID
+════════════════════════════════════ */
+#stories-container{
+  position:relative;z-index:5;
+  max-width:900px;margin:0 auto;
+  padding:10px 14px 100px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:18px;
+}
+@media(min-width:640px){#stories-container{grid-template-columns:1fr 1fr;}}
+@media(min-width:900px){#stories-container{grid-template-columns:repeat(3,1fr);}}
+
+/* ════════════════════════════════════
+   STORY CARD
+════════════════════════════════════ */
+.story-card{
+  background:linear-gradient(145deg,rgba(26,13,0,0.92),rgba(18,8,0,0.95));
+  border:1px solid var(--border);
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease;
+  position:relative;
+  -webkit-tap-highlight-color:transparent;
+  will-change:transform;
+}
+.story-card::before{
+  content:'';position:absolute;inset:0;border-radius:18px;
+  background:radial-gradient(ellipse at 50% 0%,rgba(212,175,55,0.09) 0%,transparent 65%);
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.story-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(0,0,0,0.5),0 0 30px rgba(212,175,55,0.18);
+  border-color:var(--border-bright);
+}
+.story-card:hover::before{opacity:1;}
+.story-card:active{transform:scale(.98);}
+
+/* Card shimmer */
+.story-card::after{
+  content:'';position:absolute;top:0;left:-120%;width:50%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);
+  transform:skewX(-20deg);
+  animation:cardShim 6s ease-in-out infinite;
+  animation-delay:var(--cd,0s);
+}
+@keyframes cardShim{0%{left:-120%}30%,100%{left:160%}}
+
+/* Category tag */
+.card-cat{
+  display:flex;align-items:center;gap:6px;
+  padding:10px 14px 6px;
+}
+.cat-tag{
+  font-size:10px;letter-spacing:1.2px;
+  color:var(--saffron);
+  background:rgba(255,140,0,0.1);
+  border:1px solid rgba(255,140,0,0.2);
+  border-radius:12px;padding:3px 10px;
+  font-family:'Noto Sans Tamil',sans-serif;
+}
+.card-num{
+  margin-left:auto;
+  font-size:10px;color:rgba(212,175,55,0.3);
+  font-family:'Cinzel',serif;letter-spacing:1px;
+}
+
+/* Card title */
+.card-title{
+  font-family:'Noto Serif Tamil',serif;
+  font-size:clamp(13px,3.5vw,16px);
+  font-weight:700;
+  color:var(--cream);
+  padding:4px 14px 8px;
+  line-height:1.45;
+}
+
+/* Story preview */
+.card-preview{
+  font-family:'Noto Sans Tamil',sans-serif;
+  font-size:12px;line-height:1.75;
+  color:var(--text-dim);
+  padding:0 14px 10px;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+/* Location & devotee strip */
+.card-meta{
+  padding:8px 14px 12px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.meta-loc{
+  font-size:10px;color:rgba(212,175,55,0.5);
+  letter-spacing:.5px;display:flex;align-items:center;gap:3px;
+}
+.meta-read{
+  margin-left:auto;
+  font-size:10px;letter-spacing:1px;
+  color:rgba(212,175,55,0.5);
+  border:1px solid rgba(212,175,55,0.2);
+  border-radius:12px;padding:3px 10px;
+  font-family:'Cinzel',serif;
+  transition:all .2s;
+}
+.story-card:hover .meta-read{
+  color:var(--gold-lt);border-color:rgba(212,175,55,0.45);
+}
+
+/* Tags */
+.card-tags{
+  padding:0 14px 12px;display:flex;gap:4px;flex-wrap:wrap;
+}
+.tag{
+  font-size:10px;
+  background:rgba(212,175,55,0.07);
+  border:1px solid rgba(212,175,55,0.14);
+  border-radius:10px;padding:2px 8px;
+  color:rgba(212,175,55,0.5);
+  font-family:'Noto Sans Tamil',sans-serif;
+}
+
+/* Divider inside card */
+.card-divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,0.12),transparent);
+  margin:0 14px;
+}
+
+/* ════════════════════════════════════
+   STORY MODAL (full screen reader)
+════════════════════════════════════ */
+#story-modal{
+  position:fixed;inset:0;z-index:500;
+  display:none;
+  flex-direction:column;
+  background:linear-gradient(180deg,#0A0500 0%,#120900 60%,#0A0500 100%);
+  overflow:hidden;
+}
+#story-modal.open{display:flex;}
+
+/* Modal header */
+#modal-header{
+  position:relative;
+  padding:16px 20px 14px;
+  border-bottom:1px solid rgba(212,175,55,0.14);
+  background:rgba(8,4,0,0.92);
+  backdrop-filter:blur(10px);
+  flex-shrink:0;
+}
+#modal-close{
+  position:absolute;top:14px;right:16px;
+  background:rgba(212,175,55,0.08);
+  border:1px solid rgba(212,175,55,0.25);
+  border-radius:50%;width:34px;height:34px;
+  cursor:pointer;font-size:14px;color:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+#modal-close:hover{background:rgba(212,175,55,0.18);}
+#modal-cat-tag{
+  font-size:10px;letter-spacing:1.5px;
+  color:var(--saffron);
+  background:rgba(255,140,0,0.1);
+  border:1px solid rgba(255,140,0,0.2);
+  border-radius:12px;padding:3px 12px;
+  display:inline-block;margin-bottom:6px;
+  font-family:'Noto Sans Tamil',sans-serif;
+}
+#modal-title{
+  font-family:'Noto Serif Tamil',serif;
+  font-size:clamp(15px,4.5vw,22px);
+  font-weight:700;color:var(--cream);
+  padding-right:44px;line-height:1.4;
+}
+#modal-meta-row{
+  display:flex;align-items:center;gap:8px;
+  margin-top:6px;flex-wrap:wrap;
+}
+.m-loc,.m-dev{
+  font-size:10px;color:rgba(212,175,55,0.45);
+  letter-spacing:.5px;display:flex;align-items:center;gap:3px;
+}
+#modal-progress-bar{
+  position:absolute;bottom:0;left:0;height:2px;
+  background:linear-gradient(90deg,var(--saffron),var(--gold-lt));
+  width:0%;transition:width .3s;border-radius:0 2px 2px 0;
+}
+
+/* Modal scroll area */
+#modal-body{
+  flex:1;overflow-y:auto;
+  padding:24px 20px 40px;
+  -webkit-overflow-scrolling:touch;
+  scroll-behavior:smooth;
+}
+/* Custom scrollbar */
+#modal-body::-webkit-scrollbar{width:4px;}
+#modal-body::-webkit-scrollbar-track{background:rgba(212,175,55,0.03);}
+#modal-body::-webkit-scrollbar-thumb{background:rgba(212,175,55,0.2);border-radius:2px;}
+
+/* Om symbol in modal */
+.modal-om{
+  text-align:center;font-size:2rem;
+  color:var(--gold-lt);display:block;margin-bottom:16px;
+  filter:drop-shadow(0 0 15px rgba(255,215,0,.6));
+  animation:omGlow 4s ease-in-out infinite;
+}
+
+/* Story text */
+#modal-story-text{
+  font-family:'Noto Serif Tamil',serif;
+  font-size:clamp(14px,4vw,17px);
+  line-height:2.1;
+  color:var(--cream);
+  letter-spacing:.02em;
+  text-align:justify;
+}
+
+/* Reading divider */
+.modal-divider{
+  display:flex;align-items:center;gap:12px;
+  margin:28px 0;
+}
+.modal-div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.22),transparent);}
+.modal-div-sym{color:var(--gold);font-size:14px;opacity:.6;}
+
+/* Tamil quote box */
+#modal-quote-box{
+  background:linear-gradient(135deg,rgba(30,15,0,0.9),rgba(15,7,0,0.95));
+  border:1px solid rgba(212,175,55,0.3);
+  border-left:3px solid var(--saffron);
+  border-radius:0 14px 14px 0;
+  padding:18px 20px;
+  margin:20px 0;
+  position:relative;
+  overflow:hidden;
+}
+#modal-quote-box::before{
+  content:'“';
+  position:absolute;top:-12px;left:10px;
+  font-size:5rem;color:rgba(212,175,55,0.08);
+  font-family:Georgia,serif;line-height:1;pointer-events:none;
+}
+.quote-label{
+  font-size:9px;letter-spacing:2px;color:var(--saffron);
+  opacity:.7;margin-bottom:8px;
+  font-family:'Cinzel',serif;
+}
+#modal-quote-text{
+  font-family:'Noto Serif Tamil',serif;
+  font-size:clamp(13px,3.8vw,16px);
+  line-height:1.85;
+  color:var(--cream2);
+  font-style:italic;
+  letter-spacing:.02em;
+}
+.quote-source{
+  margin-top:8px;
+  font-size:11px;color:rgba(212,175,55,0.4);
+  text-align:right;letter-spacing:.5px;
+}
+
+/* Nav buttons in modal */
+#modal-nav{
+  display:flex;gap:10px;
+  padding:14px 20px 20px;
+  border-top:1px solid rgba(212,175,55,0.1);
+  background:rgba(8,4,0,0.88);
+  backdrop-filter:blur(8px);
+  flex-shrink:0;
+}
+.mnav-btn{
+  flex:1;padding:12px 10px;
+  border-radius:12px;
+  border:1px solid rgba(212,175,55,0.25);
+  background:rgba(20,10,0,0.8);
+  color:var(--gold);
+  font-family:'Noto Sans Tamil',sans-serif;
+  font-size:13px;letter-spacing:.5px;
+  cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  -webkit-tap-highlight-color:transparent;
+}
+.mnav-btn:hover{background:rgba(212,175,55,0.12);border-color:var(--gold);}
+.mnav-btn:disabled{opacity:.3;cursor:not-allowed;}
+
+/* ════════════════════════════════════
+   DIYA FLAME DECORATION
+════════════════════════════════════ */
+.diya-accent{
+  text-align:center;padding:16px 0 6px;
+  font-size:1.8rem;
+  animation:diyaFlick .7s ease-in-out infinite alternate;
+}
+@keyframes diyaFlick{
+  0%{filter:drop-shadow(0 0 8px rgba(255,140,0,.7)) brightness(1);}
+  100%{filter:drop-shadow(0 0 16px rgba(255,200,0,.9)) brightness(1.2);}
+}
+
+/* ════════════════════════════════════
+   EMPTY STATE
+════════════════════════════════════ */
+#empty-state{
+  display:none;
+  grid-column:1/-1;
+  text-align:center;padding:60px 20px;
+  color:rgba(212,175,55,0.35);
+}
+#empty-state .empty-icon{font-size:3rem;display:block;margin-bottom:12px;opacity:.5;}
+#empty-state p{font-family:'Noto Sans Tamil',sans-serif;font-size:14px;letter-spacing:.5px;}
+
+/* ════════════════════════════════════
+   SCROLL TO TOP
+════════════════════════════════════ */
+#scroll-top{
+  position:fixed;bottom:80px;right:16px;z-index:150;
+  width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(212,175,55,0.3);
+  background:rgba(10,5,0,0.85);
+  color:var(--gold);font-size:16px;
+  cursor:pointer;display:none;
+  align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+  transition:all .3s;-webkit-tap-highlight-color:transparent;
+  box-shadow:0 4px 16px rgba(0,0,0,0.4);
+}
+#scroll-top.visible{display:flex;}
+#scroll-top:hover{box-shadow:0 0 20px rgba(212,175,55,0.3);}
+
+/* ════════════════════════════════════
+   OM FOOTER
+════════════════════════════════════ */
+#page-footer{
+  position:relative;z-index:5;
+  text-align:center;
+  padding:20px 16px 30px;
+  border-top:1px solid rgba(212,175,55,0.1);
+}
+.footer-om{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(14px,4vw,22px);font-weight:900;letter-spacing:4px;
+  background:linear-gradient(180deg,#FFFDE7 0%,#FFD700 30%,#D4AF37 60%,#FFD700 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 8px rgba(255,215,0,.6));
+  animation:omGlow 3.5s ease-in-out infinite;
+}
+.footer-sub{font-size:10px;color:rgba(212,175,55,0.3);letter-spacing:4px;margin-top:5px;}
+
+/* ════════════════════════════════════
+   READING MUSIC INDICATOR
+════════════════════════════════════ */
+#reading-music-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  display:none;
+  align-items:center;gap:10px;
+  padding:10px 18px;
+  background:rgba(6,3,0,0.95);
+  border-top:1px solid rgba(212,175,55,0.18);
+  backdrop-filter:blur(12px);
+}
+#reading-music-bar.visible{display:flex;}
+.rmb-icon{font-size:16px;animation:diyaFlick .7s ease-in-out infinite alternate;}
+.rmb-text{
+  font-family:'Noto Sans Tamil',sans-serif;
+  font-size:11px;color:rgba(212,175,55,0.7);letter-spacing:.5px;flex:1;
+}
+.wave-mini{display:flex;align-items:center;gap:2px;height:18px;}
+.wm-bar{
+  width:3px;border-radius:2px;background:var(--saffron);
+  animation:wvAnim .6s ease-in-out infinite alternate;
+  opacity:.7;
+}
+.wm-bar:nth-child(2){animation-delay:.1s;}
+.wm-bar:nth-child(3){animation-delay:.2s;}
+.wm-bar:nth-child(4){animation-delay:.3s;}
+.wm-bar:nth-child(5){animation-delay:.15s;}
+@keyframes wvAnim{0%{height:4px}100%{height:16px}}
+
+/* ════════════════════════════════════
+   ANIMATIONS
+════════════════════════════════════ */
+.card-enter{
+  animation:cardIn .4s ease forwards;
+  opacity:0;transform:translateY(20px);
+}
+@keyframes cardIn{to{opacity:1;transform:translateY(0)}}
+
+/* Floating petals */
+.float-petal{
+  position:fixed;pointer-events:none;z-index:2;
+  font-size:16px;user-select:none;
+  animation:petalFloat linear forwards;
+  opacity:0;
+}
+@keyframes petalFloat{
+  0%{transform:translateY(0) rotate(0deg);opacity:.7;}
+  100%{transform:translateY(100vh) rotate(720deg);opacity:0;}
+}
+
+/* ════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════ */
+@media(min-width:640px){
+  #modal-body{padding:30px 32px 50px;}
+  #modal-story-text{font-size:clamp(15px,2.5vw,18px);}
+}
+</style>
+</head>
+<body>
+
+<!-- HIDDEN AUDIO -->
+<audio id="meditation-audio" preload="auto" loop>
+  <source src="audio/meditation.mp3" type="audio/mp3">
+</audio>
+
+<!-- BACKGROUND CANVAS -->
+<canvas id="bg-canvas"></canvas>
+<div class="bg-layer"></div>
+
+<!-- BACK BUTTON -->
+<a href="index.html" id="back-btn">← கோவிலுக்கு திரும்பு</a>
+
+<!-- MUSIC CONTROL -->
+<div id="music-ctrl">
+  <div class="music-dot" id="music-dot"></div>
+  <button id="music-toggle" onclick="toggleBgMusic()" aria-label="Toggle music">▶</button>
+  <span class="music-label">🎵 தியான இசை</span>
+</div>
+
+<!-- SCROLL TOP -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑</button>
+
+<!-- PAGE HEADER -->
+<header id="page-header">
+  <span class="om-symbol">ॐ</span>
+  <div class="page-title">சாயின் அற்புத கதைகள்</div>
+  <div class="page-subtitle">Sai Baba Miracles in Tamil</div>
+  <div class="header-divider">
+    <div class="hdiv-line"></div>
+    <div class="hdiv-gem">✦ ✦ ✦</div>
+    <div class="hdiv-line"></div>
+  </div>
+  <div class="story-count-badge">
+    <span>🪔</span>
+    <span id="total-badge">100 அற்புத கதைகள்</span>
+  </div>
+</header>
+
+<!-- SEARCH & FILTER BAR -->
+<div id="controls-bar">
+  <div class="search-wrap">
+    <input type="text" id="search-input" placeholder="கதை தேடுங்கள்... (தலைப்பு, இடம், வகை)"
+           oninput="filterStories()" aria-label="Search stories">
+    <span class="search-icon">🔍</span>
+  </div>
+  <div class="cat-scroll" id="cat-scroll">
+    <button class="cat-btn active" onclick="setCategory('அனைத்தும்',this)">அனைத்தும்</button>
+  </div>
+</div>
+
+<!-- RESULTS INFO -->
+<div id="results-info"></div>
+
+<!-- STORIES GRID -->
+<main id="stories-container" aria-label="Sai Baba miracle stories"></main>
+
+<!-- EMPTY STATE -->
+<div id="empty-state">
+  <span class="empty-icon">🙏</span>
+  <p>தேடிய கதை கிடைக்கவில்லை.</p>
+  <p style="margin-top:6px;opacity:.6;">வேறு வார்த்தைகளில் தேடுங்கள்.</p>
+</div>
+
+<!-- PAGE FOOTER -->
+<div class="diya-accent">🪔</div>
+<footer id="page-footer">
+  <div class="footer-om">॥ OM SAI RAM ॥</div>
+  <div class="footer-sub">SABKA MALIK EK</div>
+</footer>
+
+<!-- READING MUSIC BAR -->
+<div id="reading-music-bar" role="status">
+  <span class="rmb-icon">🪔</span>
+  <span class="rmb-text">கதை படிக்கும்போது தியான இசை வாசிக்கிறது...</span>
+  <div class="wave-mini">
+    <div class="wm-bar"></div><div class="wm-bar"></div>
+    <div class="wm-bar"></div><div class="wm-bar"></div>
+    <div class="wm-bar"></div>
+  </div>
+</div>
+
+<!-- STORY MODAL -->
+<div id="story-modal" role="dialog" aria-modal="true" aria-label="Story Reader">
+  <div id="modal-header">
+    <button id="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <div id="modal-cat-tag"></div>
+    <div id="modal-title"></div>
+    <div id="modal-meta-row">
+      <span class="m-loc" id="modal-loc"></span>
+      <span class="m-dev" id="modal-dev"></span>
+    </div>
+    <div id="modal-progress-bar"></div>
+  </div>
+
+  <div id="modal-body" onscroll="updateReadProgress()">
+    <span class="modal-om">ॐ</span>
+    <div id="modal-story-text"></div>
+    <div class="modal-divider">
+      <div class="modal-div-line"></div>
+      <span class="modal-div-sym">✦ ॐ ✦</span>
+      <div class="modal-div-line"></div>
+    </div>
+    <div id="modal-quote-box">
+      <div class="quote-label">✦ தமிழ் ஞான வாக்கு ✦</div>
+      <div id="modal-quote-text"></div>
+    </div>
+    <div style="text-align:center;margin-top:24px;font-size:1.5rem;animation:diyaFlick .7s ease-in-out infinite alternate;">🪔</div>
+  </div>
+
+  <div id="modal-nav">
+    <button class="mnav-btn" id="prev-btn" onclick="navigateStory(-1)">← முந்தைய</button>
+    <button class="mnav-btn" id="next-btn" onclick="navigateStory(1)">அடுத்தது →</button>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════
+   DATA
+════════════════════════════════ */
+const DATA = {"title": "சாய்பாபா அற்புத கதைகள் - விரிவான பதிப்பு", "subtitle": "ஓம் சாய் ராம் - 100 இதயம் நெகிழும் அற்புத கதைகள்", "total_stories": 100, "categories": ["உடல் நலம்", "உயிர் காத்தல்", "வாழ்க்கை அற்புதம்", "குடும்ப வாழ்க்கை", "கல்வி", "இயற்கை அற்புதம்", "ஆன்மீக அனுபவம்", "அன்றாட வாழ்க்கை", "உளவியல் குணம்", "சேவை அற்புதம்"], "stories": [{"id": 1, "title": "குழந்தையின் உயிரை காத்த சாய்", "category": "உடல் நலம்", "story": "புனே நகரில் வசிக்கும் ராமச்சந்திர அவர்களுக்கு ஒரே மகன் கோவிந்த், வயது ஆறு. திடீரென்று மூளை காய்ச்சல் வந்தது. 105 டிகிரி வரை ஏறியது. நான்கு நாட்கள் மருத்துவமனையில் இருந்தும் குணம் இல்லை. மருத்துவர்கள் 'நம்பிக்கை குறைவு' என்று கூறினர். தாயார் கமலாதேவி மருத்துவமனை தாழ்வாரத்தில் சாய்பாபா படத்தை நெஞ்சோடு அணைத்துக்கொண்டு 'பாபா, என் மகனை காப்பாற்று, உன்னைத் தவிர வேறு யாரும் இல்லை' என்று மனமுருகி அழுதாள். அன்றிரவு கனவில் சாய்பாபா வெள்ளை உடையில் தோன்றி 'கமலா, பயப்படாதே, உன் மகன் என்னுடையவன், நாளை காலை பார்' என்று கூறினார். மறுநாள் அதிகாலை 4 மணிக்கு மருத்துவர் ஓடி வந்து 'காய்ச்சல் திடீரென்று இறங்கியது, குழந்தை இப்போது நார்மல் temperature-ல் இருக்கிறது' என்று ஆச்சரியத்துடன் கூறினார். மூன்று நாட்களில் கோவிந்த் ஓடி ஆடினான். 'மருத்துவ விஞ்ஞானம் விளக்க முடியாத மீட்சி' என்று மருத்துவர் கோப்பில் எழுதினார். ராமச்சந்திர குடும்பம் சிர்டிக்கு சென்று நன்றி நிறைந்த கண்ணீரோடு பாபாவை வணங்கினர். இன்று கோவிந்த் ஆரோக்கியமாக பள்ளியில் படிக்கிறான்.", "devotee": "ராமச்சந்திர, கமலாதேவி", "location": "புனே", "tamil_quote": "\"நம்பிக்கை என்பது மருந்தை விட வலிமையானது; பாபாவின் கருணை என்பது அமிர்தத்தை விட இனிமையானது.\" — சாய் வாக்கு", "tags": ["குழந்தை", "காய்ச்சல்", "கனவு", "தாயார்", "குணம்"]}, {"id": 2, "title": "வியாபாரம் மீண்டும் செழித்தது", "category": "வாழ்க்கை அற்புதம்", "story": "நாசிக்கில் சுரேஷ் கோட்கர் 20 ஆண்டு நேர்மையாக துணிக்கடை நடத்தினார். அருகில் பெரிய மால் திறந்தவுடன் வாடிக்கையாளர்கள் எல்லாரும் அங்கே சென்றனர். 8 லட்சம் வங்கிக்கடன், வீட்டிற்கு ஏலம் நோட்டீஸ் வந்தது. நண்பன் ரமேஷ் 'சிர்டி போ, பாபாகிட்ட சொல்லு' என்று அழைத்தான். மனமில்லாமல் சென்றார். சமாதியில் 'பாபா, நேர்மையாக வியாபாரம் செய்தேன், கைகொடு' என்று வேண்டினார். திரும்பி வந்த மூன்றாவது நாளில் ஒரு அறியாத நபர் 'பள்ளி யூனிஃபார்ம் 500 குழந்தைகளுக்கு வேண்டும், நீங்கள் தர முடியுமா?' என்று கேட்டார். ஒரே ஆர்டரில் 3 லட்சம் வியாபாரம். அடுத்த மாதம் மேலும் பள்ளிகள் வந்தன. கடை 'யூனிஃபார்ம் ஸ்பெஷலிஸ்ட்' என்று பெயர் பெற்றது. கடன் அடைந்தது. வீடு காப்பாற்றப்பட்டது. இன்று சுரேஷ் சிர்டிக்கு ஆண்டுதோறும் சென்று நன்றி செலுத்துகிறார்.", "devotee": "சுரேஷ் கோட்கர்", "location": "நாசிக்", "tamil_quote": "\"வாழ்க்கையில் பாதை மறைந்தாலும் சாய் ஒளி மறைவதில்லை.\" — தமிழ் பக்தர் வாக்கு", "tags": ["வியாபாரம்", "கடன்", "நஷ்டம்", "மீட்சி", "சிர்டி"]}, {"id": 3, "title": "பாம்பு கடித்தும் உயிர் பிழைத்தது", "category": "உயிர் காத்தல்", "story": "அகமதுநகரில் விவசாயி கிஷன்ராவ் அதிகாலையில் வயலுக்கு சென்றார். நாகப்பாம்பு கடித்தது. வலி கடுமையானது. மனைவி சுமன் 'பாபா, என் கணவனை காப்பாற்று, என் குழந்தைகளுக்கு தந்தை வேண்டும்!' என்று கதறி வேண்டினாள். வாகனம் வந்தது. மருத்துவமனையில் மருத்துவர் 'நஞ்சு கொடியது, ஆனால் உடலில் பரவிய அளவு மிகவும் குறைவாக உள்ளது' என்று வியந்தார். மூன்று நாட்கள் சிகிச்சை. கிஷன்ராவ் முழுமையாக குணமடைந்தார். 'இந்த நாகப்பாம்பு கடித்தவர் இவ்வளவு விரைவில் பிழைப்பது மருத்துவ இலக்கணத்திற்கு புரியாத நிகழ்வு' என்று மருத்துவர் ஆவணப்படுத்தினார். குடும்பம் சிர்டி சென்று நன்றி கூறியது. இன்று வரை தினமும் சாய் பூஜை நடக்கிறது.", "devotee": "கிஷன்ராவ், சுமன்", "location": "அகமதுநகர்", "tamil_quote": "\"என்னை நம்பிக்கையோடு அழைத்தால், கடல் நடுவிலும் நான் கரை காட்டுவேன்.\" — சாய்பாபா", "tags": ["பாம்பு", "நஞ்சு", "விவசாயி", "மீட்சி", "அற்புதம்"]}, {"id": 4, "title": "திருமணம் நடந்தது", "category": "குடும்ப வாழ்க்கை", "story": "சென்னையில் லட்சுமிக்கு வயது 32 ஆனாலும் திருமணம் ஆகவில்லை. நிறம், ஜாதகம், சம்பளம் என்று ஒவ்வொரு வரனும் திரும்பியது. தாயார் சிர்டியில் 40 நாட்கள் தங்கி தினமும் 'பாபா, என் மகளுக்கு நல்ல வாழ்க்கை கொடு' என்று வேண்டினார். திரும்பி வந்த வாரத்தில் புதிய வரன் கோபால் வந்தான். முதல் சந்திப்பிலேயே 'நேற்று கனவில் ஒரு முதியவர் ஒரு பெண் படம் காட்டி இவளை மணந்துகொள் என்று சொன்னார்' என்று கோபால் கூறினான். அந்த முதியவர் வர்ணனை சாய்பாபாவை போலவே இருந்தது. இரண்டு மாதத்தில் திருமணம் நடந்தது. இன்று இரண்டு குழந்தைகளுடன் மகிழ்ச்சியாக வாழ்கின்றனர்.", "devotee": "லட்சுமி, தாயார்", "location": "சென்னை", "tamil_quote": "\"குடும்பத்தை பாபா கட்டுகிறான்; நாம் செய்வது பிரார்த்தனை மட்டுமே.\" — சாய் வாக்கு", "tags": ["திருமணம்", "கனவு", "வரன்", "குடும்பம்", "அருள்"]}, {"id": 5, "title": "தீ விபத்தில் இருந்து காப்பு", "category": "உயிர் காத்தல்", "story": "மும்பையில் விஜயலட்சுமி குடும்பம் நான்காவது மாடியில் வசித்தனர். இரவு 11 மணிக்கு கீழே தீ பற்றியது. புகை மூன்றாம் மாடி வரை வந்தது. கதவு திறக்கவில்லை. குழந்தைகளுடன் அகப்பட்டனர். அந்த தருணத்தில் விஜயலட்சுமி 'சாய் நாதா, குழந்தைகளை காப்பாற்று' என்று வேண்டினாள். அடுத்த நிமிடம் கதவு தாமாகவே திறந்தது. குடும்பம் ஓடி வெளியே வந்தது. சில நிமிடங்களில் அவர்கள் அறையும் எரிந்தது. 'கதவு எப்படி திறந்தது?' என்று யாருக்கும் விளங்கவில்லை. தீயணைப்பு அதிகாரிகளே வியந்தனர். குடும்பம் மொத்தமும் பத்திரம்.", "devotee": "விஜயலட்சுமி குடும்பம்", "location": "மும்பை", "tamil_quote": "\"மரணம் கதவு தட்டும்போது, பாபாவை நினைத்தால் மரணமே வணங்கும்.\" — பக்தர் அனுபவம்", "tags": ["தீ", "கதவு", "காப்பு", "குடும்பம்", "அற்புதம்"]}, {"id": 6, "title": "IAS தேர்வில் வெற்றி", "category": "கல்வி", "story": "தமிழ்நாட்டு ஏழை குடும்பத்தின் மகன் அரவிந்த் IAS கனவு கொண்டான். தந்தை ஒரு சாதாரண ஆசிரியர். மூன்று முறை தோல்வி. 'விட்டுவிடு' என்று நண்பர்கள் கூறினர். தாயார் 'சிர்டி போ, பாபாகிட்ட மனம் திறந்து பேசு' என்றாள். சமாதியில் 'பாபா, என் தந்தையின் கனவுக்காக படிக்கிறேன், கொஞ்சம் கருணை' என்று கதறினான். 'நீ என் கருவி, நான் உன்னில் இருக்கிறேன்' என்ற உணர்வு பிறந்தது. நான்காவது முயற்சியில் புரிதல் வேறு மாதிரியிருந்தது. All India Rank 89 பெற்றான். தந்தை கண்ணீர் பெருக்கினார். இன்று IAS அதிகாரியாக சேவை செய்கிறான். ஒவ்வொரு வியாழனும் சாய் கோவிலில் பூஜை செய்கிறான்.", "devotee": "அரவிந்த்", "location": "தமிழ்நாடு", "tamil_quote": "\"கல்வி என்பது மட்டும் அல்ல; கடவுளின் அருள் இருந்தால் சாதனை நிச்சயம்.\" — சாய் ஞானம்", "tags": ["IAS", "தேர்வு", "வெற்றி", "தந்தை", "கனவு"]}, {"id": 7, "title": "குருட்டு பார்வை திரும்பியது", "category": "உடல் நலம்", "story": "ஆந்திரப்பிரதேசத்தில் 70 வயது வெங்கட ராவுக்கு கண்ணில் நரம்பு பாதிப்பு வந்தது. 'நிரந்தரமாக பார்வை போகலாம்' என்று மருத்துவர் கூறினர். மகன் சிர்டி அழைத்தான். விபூதி வாங்கி 'பாபா, இவர் உன்னை தினமும் வணங்கினார், இவர் கண்கள் உன்னைப் பார்க்க வேண்டும்' என்று வேண்டினான். தினமும் கண்களில் விபூதி தேய்த்தனர். ஒரு மாதத்தில் 40% பார்வை திரும்பியது. ஆறு மாதத்தில் 65% வந்தது. 'நரம்பு பாதிப்பு இருந்தவர்களுக்கு இப்படி பார்வை திரும்புவது மருத்துவ நூல்களில் இல்லாத நிகழ்வு' என்று மருத்துவர் கூறினார். 85 வயதில் சிர்டிக்கே சென்று நன்றி செலுத்தினார்.", "devotee": "வெங்கட ராவ்", "location": "ஆந்திரப்பிரதேசம்", "tamil_quote": "\"உடல் நோயை மருத்துவர் குணப்படுத்துகிறார்; ஆன்மா நோயை இறைவன் மட்டுமே தீர்க்கிறான்.\" — திருமூலர்", "tags": ["பார்வை", "கண்", "விபூதி", "முதியவர்", "குணம்"]}, {"id": 8, "title": "விமான விபத்திலிருந்து தப்பித்தல்", "category": "உயிர் காத்தல்", "story": "மும்பையில் நிறுவன இயக்குனர் ப்ரகாஷ் லண்டன் பயணம் திட்டமிட்டார். புறப்பாட்டிற்கு முந்தின இரவு கனவில் சாய்பாபா 'நாளை பயணம் போகாதே' என்று நேரடியாக கூறினார். உறுதியாக டிக்கெட் ரத்து செய்தார். அந்த விமானம் புறப்பட்டது. இரண்டு மணி நேரம் கழித்து செய்தி வந்தது: 'இன்ஜின் கோளாறால் அவசர இறக்கம், 40 பயணிகளுக்கு காயம்'. ப்ரகாஷ் நடுங்கினார். அன்றே குடும்பம் சிர்டிக்கு கிளம்பியது. நன்றியாக தன் நிறுவனத்தில் சாய்சேவா நிதி தொடங்கினார். ஆயிரக்கணக்கான ஏழை குழந்தைகளுக்கு கல்வி கொடுக்கிறது.", "devotee": "ப்ரகாஷ் தேஸாய்", "location": "மும்பை", "tamil_quote": "\"யாரும் அற்றவர் அல்ல; சாய் இருக்கும்போது தனிமை என்பதே இல்லை.\" — சாய் வாக்கு", "tags": ["விமானம்", "கனவு", "எச்சரிக்கை", "சேவை", "உயிர்"]}, {"id": 9, "title": "20 லட்சம் கடன் தீர்ந்தது", "category": "வாழ்க்கை அற்புதம்", "story": "ஹைதராபாத்தில் கட்டிட தொழிலாதி சந்தோஷ் முதலீட்டாளர் மோசடியால் 20 லட்சம் நஷ்டம். வீட்டிற்கு ஏலம் நோட்டீஸ். குடும்பம் கண்ணீரில் திளைத்தது. மனைவி '11 வியாழன் விரதம் இருப்போம்' என்றாள். தினமும் பூஜை, 108 நாம ஜபம். 8வது வியாழன் 20 ஆண்டு தொடர்பற்ற ஒரு உறவினர் திடீரென்று வந்தார். 'கனவில் ஒரு முதியவர் உன் தந்தை நட்பனின் பெயர் சொல்லி இந்த வீட்டிற்கு போ என்று கூறினார்' என்று கூறி 25 லட்சம் கொடுத்தார். கடன் அடைந்தது. வீடு காப்பாற்றப்பட்டது. 11வது வியாழன் குடும்பம் மகிழ்ச்சியில் நனைந்தது.", "devotee": "சந்தோஷ் குலகர்ணி", "location": "ஹைதராபாத்", "tamil_quote": "\"இழப்பு என்பது இறைவன் கொடுக்கும் திருப்பம்; புதிய வாழ்வின் வாயில்.\" — சாய் ஞானம்", "tags": ["கடன்", "விரதம்", "உறவினர்", "மீட்சி", "குடும்பம்"]}, {"id": 10, "title": "மழை வேண்டி அற்புதம்", "category": "இயற்கை அற்புதம்", "story": "மகாராஷ்டிரா வாடல்கர் கிராமத்தில் மூன்று ஆண்டு வறட்சி. கிணறுகள் வற்றின. குழந்தைகள் பள்ளி விட்டு வேலைக்கு போக ஆரம்பித்தனர். கிராமத்தலைவர் ஹரிபாவ் 200 பேரை கூட்டி சாய்பாபா கோவிலில் கூட்டு பிரார்த்தனை நடத்தினார். ஒரு மணி நேரம் சாய் நாமம் ஒலித்தது. அதிகாலை 4 மணிக்கு பேய்மழை பொழிந்தது. அந்த கிராமத்தில் மட்டும் மழை. பக்கத்து கிராமங்களில் இல்லை. குழந்தைகள் மழையில் விளையாடினர். பெரியவர்கள் கண்ணீரோடு ஆடினர். அந்த வருடம் நல்ல விளைச்சல் ஆனது. கிராமம் புத்துயிர் பெற்றது.", "devotee": "ஹரிபாவ் பாட்டீல், கிராம மக்கள்", "location": "மகாராஷ்டிரா", "tamil_quote": "\"மழையை பொழிப்பவன் அவன்; வெளிச்சம் தருபவன் அவன்; நம் பிரார்த்தனை கேட்பவனும் அவனே.\" — சாய் நம்பிக்கை", "tags": ["மழை", "வறட்சி", "கிராமம்", "கூட்டு பிரார்த்தனை", "இயற்கை"]}, {"id": 11, "title": "சர்க்கரை நோய் கட்டுப்பட்டது", "category": "உடல் நலம்", "story": "நாக்பூரில் ரங்கராவ் தேஷ்பாண்டேவிற்கு சர்க்கரை அளவு 400 mg/dl வரை போனது. மருந்துகள் பயனில்லை. இன்சுலின் போட வேண்டும் என்று மருத்துவர் கூறினார். மகள் சந்தியா சிர்டி விபூதி வாங்கி வந்தாள். தினமும் காலை விபூதி நீரில் கலந்து குடிப்பது, 108 நாம ஜபம் என்று 40 நாட்கள் தொடர்ந்தனர். 41வது நாள் பரிசோதனை: 120 mg/dl. மருத்துவர் திரும்ப திரும்ப பார்த்தார். 'இது எப்படி சாத்தியம்?' என்று திகைத்தார். இன்சுலின் தேவையே இல்லை என்று அறிவித்தார். ரங்கராவ் இன்று 78 வயதில் ஆரோக்கியமாக தினமும் பூஜை செய்கிறார்.", "devotee": "ரங்கராவ் தேஷ்பாண்டே", "location": "நாக்பூர்", "tamil_quote": "\"தியானம் செய்பவனுக்கு நோய் நெருங்காது; இறைவன் நினைப்பவனுக்கு மரணமும் வணங்கும்.\" — சாய் உபதேசம்", "tags": ["சர்க்கரை நோய்", "விபூதி", "குணம்", "முதியவர்", "ஆரோக்கியம்"]}, {"id": 12, "title": "குழந்தை வரம் கிடைத்தது", "category": "குடும்ப வாழ்க்கை", "story": "பெங்களூரில் மீனா-கோவிந்த் ராஜு தம்பதியர் 12 ஆண்டு திருமணத்திலும் குழந்தை இல்லை. IVF, IUI எல்லாம் தோல்வி. சிர்டி சென்று மூன்று நாட்கள் தங்கினர். மீனா 'பாபா, வாழ்க்கையில் ஒரே ஒரு வரம் தான் வேண்டும்' என்று கதறினாள். ஒரு பாட்டி வந்து தலையில் கை வைத்து 'தாயாவாய்' என்று சொன்னாள். அவள் யாரென்று யாருக்கும் தெரியவில்லை. 6 மாதத்தில் இயற்கையாக கர்ப்பம் உண்டானது. ஆரோக்கியமான ஆண் குழந்தை பிறந்தது. 'சாய்கிருஷ்ண' என்று பெயர் வைத்தனர். இன்று அவன் 5 வயதில் ஓடி ஆடுகிறான்.", "devotee": "மீனா, கோவிந்த் ராஜு", "location": "பெங்களூரு", "tamil_quote": "\"அன்னையின் கண்ணீர் தாரகமந்திரம்; அது இறைவனை தொட்டு கடமை செய்வான்.\" — தமிழ் மரபு", "tags": ["குழந்தை", "IVF", "வரம்", "குடும்பம்", "கர்ப்பம்"]}, {"id": 13, "title": "கட்டிட விபத்திலிருந்து காப்பு", "category": "உயிர் காத்தல்", "story": "புனேவில் மஹாதேவ் காம்பிளே 30 அடி சாரக்கட்டில் வேலை செய்தார். கம்பி உடைந்து தூக்கி வீசப்பட்டார். 'சாய்யே காப்பாற்று!' என்று கூவினார். தோழர்கள் கயிறு கொண்டு வந்து மெல்ல இழுத்தனர். 30 அடி உயரத்திலிருந்து கீழிறங்கினாலும் ஒரு கீறல் கூட இல்லை. 'யாரோ உன்னை பிடித்துக்கொண்டனர் போல இருந்தது' என்று தோழர்கள் கூறினர். மனைவி 'பாபா காப்பாற்றினார்' என்று அழுதாள்.", "devotee": "மஹாதேவ் காம்பிளே", "location": "புனே", "tamil_quote": "\"ஆபத்தில் அழைத்தால் அவன் வருவான்; ஆனால் மனதில் அவன் இருக்கவேண்டும்.\" — சிர்டி உரை", "tags": ["விபத்து", "கட்டிடம்", "காப்பு", "தொழிலாளி", "அற்புதம்"]}, {"id": 14, "title": "காணாமல் போன மகள் திரும்பினாள்", "category": "குடும்ப வாழ்க்கை", "story": "நாசிக்கில் கமலாகர் பாட்டீலின் 16 வயது மகள் பள்ளியிலிருந்து திரும்பவில்லை. ஒரு வாரம் தேடினர். தந்தை 7 நாட்கள் சாய் கோவிலில் கண்ணீரோடு பிரார்த்தித்தார். 8வது நாள் அதிகாலை ஒரு முதியவர் மகளை வீட்டுக்கு கொண்டுவந்தார். திரும்பிப் பார்த்தால் மாயமாய் மறைந்துவிட்டார். 'ஒரு முதியவர் என்னை அழைத்து வந்தார்' என்று மகள் கூறினாள். அந்த முதியவரின் வர்ணனை சாய்பாபாவை போலவே இருந்தது. குடும்பம் நடுங்கியது.", "devotee": "கமலாகர் பாட்டீல்", "location": "நாசிக்", "tamil_quote": "\"தாய் வேண்டுவாள்; இறைவன் கேட்பான் — இதுவே குடும்பத்தின் அஸ்திவாரம்.\" — பக்தி இலக்கியம்", "tags": ["மகள்", "காணாமல்", "முதியவர்", "திரும்பல்", "பிரார்த்தனை"]}, {"id": 15, "title": "புற்றுநோய் குணமடைந்தது", "category": "உடல் நலம்", "story": "கொல்கத்தாவில் வசந்த்ராவ் சர்மாவிற்கு நுரையீரல் புற்றுநோய் மூன்றாம் நிலை. '3 மாதம் மட்டுமே' என்று மருத்துவர் கூறினர். மகன்கள் சிர்டியில் 21 நாட்கள் தினமும் பிரார்த்தித்தனர். 'பாபா, அப்பாவிற்கு குறைந்தது குழந்தைகள் திருமணம் வரை இருக்கட்டும்' என்று கேட்டனர். Chemotherapy-ல் நம்பமுடியாத அளவு நல்ல response வந்தது. ஒரு வருடத்தில் முழு remission. மகளின் திருமணம், மகன்களின் திருமணம் அனைத்தும் பார்த்தார். இன்று 68 வயதில் பேரன் பேத்திகளுடன் வாழ்கிறார்.", "devotee": "வசந்த்ராவ் சர்மா", "location": "கொல்கத்தா", "tamil_quote": "\"விபூதி என்பது சாம்பல் அல்ல; அது பாபாவின் அன்பின் வடிவம்.\" — சிர்டி பக்தர் வாக்கு", "tags": ["புற்றுநோய்", "remission", "குணம்", "குடும்பம்", "வாழ்க்கை"]}, {"id": 16, "title": "வழிகாட்டிய முதியவர்", "category": "அன்றாட வாழ்க்கை", "story": "கர்நாடகாவிலிருந்து நாராயண் ஹெக்டே முதன்முதல் சிர்டி சென்றார். அகமதுநகரில் திக்கற்று நின்றார். ஒரு வயதான பெண் வந்தாள். ஆச்சரியமாக கன்னட மொழி பேசினாள். சரியான பேருந்தில் ஏற்றி 'சரியான stop-ல் இறங்கு' என்று சொன்னாள். சிர்டி சேர்ந்தார். பாபாவின் படம் பார்த்தால் வழிகாட்டிய பெண்ணின் முகம் இதே போல் இருந்தது. கண்ணீர் பொங்கியது. 'பாபா, நீயே வந்து வழிகாட்டினாய்' என்று விழுந்தார்.", "devotee": "நாராயண் ஹெக்டே", "location": "சிர்டி", "tamil_quote": "\"சிறிய நம்பிக்கையும் பெரிய அற்புதம் செய்யும்; சாய் எந்த விஷயத்திலும் சிறியது என்று பார்க்கமாட்டான்.\" — சாய் அருளுரை", "tags": ["வழிகாட்டல்", "தோற்றம்", "சிர்டி", "கன்னடம்", "அற்புதம்"]}, {"id": 17, "title": "தொழில் கிடைத்தது", "category": "வாழ்க்கை அற்புதம்", "story": "கோயம்புத்தூரில் பொறியாளர் சுரேஷ்குமார் 2.5 ஆண்டு வேலை இல்லை. தாயார் நோயுற்றிருந்தார், மருந்துக்கு பணம் இல்லை. சாய் கோவிலில் 'ஒரு வேலை கொடு' என்று மட்டும் வேண்டினான். வெளியே வரும்போது call வந்தது: 'நாளை interview'. HR 'யார் refer பண்ணினார்?' என்று கேட்டார். 'யாரும் இல்லை' என்று கூறினான். 'ஒரு மூத்த professor strongly recommend பண்ணினார், யார் என்று தெரியல' என்று கூறினார். வேலை கிடைத்தது. அந்த professor யார் என்று இன்று வரை தெரியாது.", "devotee": "சுரேஷ்குமார்", "location": "கோயம்புத்தூர்", "tamil_quote": "\"பாபா பக்தனுக்கு துன்பம் கொடுப்பதில்லை; பாடம் கற்பிக்கிறான் மட்டுமே.\" — சாய் சத்சரித்ரா", "tags": ["வேலை", "interview", "professor", "அருள்", "தாயார்"]}, {"id": 18, "title": "சொந்த வீடு கிடைத்தது", "category": "வாழ்க்கை அற்புதம்", "story": "மதுரையில் 15 ஆண்டு வாடகை வீட்டில் வாழ்ந்த லலிதா குடும்பம் சொந்த வீடு கனவு கண்டது. அரசு திட்டத்தில் 5 முறை Apply. தேர்வாகவில்லை. லலிதா ஒவ்வொரு வியாழனும் விரதம். 6வது முறை Apply செய்தனர். லாட்டரி முடிவு: அவர்கள் பெயர் வந்தது. 'இந்த குடும்பம் 5 முறை தோல்வியடைந்தது, இம்முறை highest score' என்று அலுவலகத்தினர் கூறினர். வீட்டின் முதல் அறையில் சாய்பாபா படம் வைத்தனர்.", "devotee": "லலிதா குடும்பம்", "location": "மதுரை", "tamil_quote": "\"நேர்மையாக வாழ்பவனை இறைவன் கைவிடமாட்டான்; காலம் கடந்தாலும் கருணை வரும்.\" — திருக்குறள் ஒலி", "tags": ["வீடு", "லாட்டரி", "விரதம்", "கனவு", "குடும்பம்"]}, {"id": 19, "title": "தாலி திரும்பி கிடைத்தது", "category": "அன்றாட வாழ்க்கை", "story": "திருச்சியில் சரஸ்வதியின் கணவன் கட்டிய தாலி தொலைந்தது. வீடு முழுவதும் தேடியும் இல்லை. 'பாபா, என் கணவனின் வாழ்க்கை அடையாளம் திரும்ப கொடு' என்று வேண்டினாள். மாலையில் 5 ஆண்டு பேசாமல் இருந்த அண்டை வீட்டுக்காரி வந்தாள். 'என் 3 வயது பையன் விளையாட்டாக எடுத்துவிட்டான்' என்று தாலியை கொடுத்தாள். அன்று அண்டை வீட்டுக்காரியும் நண்பர்களானார்கள்.", "devotee": "சரஸ்வதி", "location": "திருச்சி", "tamil_quote": "\"தினசரி வாழ்வில் இறைவனை காண்பவன் உண்மையான பக்தன்.\" — சாய் ஞானம்", "tags": ["தாலி", "தொலைந்தது", "நட்பு", "மீட்சி", "நம்பிக்கை"]}, {"id": 20, "title": "கடலில் மீட்பு", "category": "உயிர் காத்தல்", "story": "சென்னை கடற்கரையில் ராகேஷின் 6 வயது மகன் அலையில் இழுக்கப்பட்டான். நீச்சல் தெரியாத தந்தை குதித்தார். 'சாய்யே!' என்று கூவினார். அலை மகனை கரையோரம் தள்ளியது. ஒரு இளைஞன் கடலில் குதித்து இருவரையும் காப்பாற்றினான். அவன் மாயமாய் மறைந்தான். 'யாரோ என்னை தள்ளினார்கள் போல இருந்தது' என்று அவன் சொன்னதாக கூறினர்.", "devotee": "ராகேஷ்", "location": "சென்னை கடற்கரை", "tamil_quote": "\"தண்ணீரில் மூழ்கியவனையும், தீயில் விழுந்தவனையும் பாபா காப்பான் — நம்பிக்கை மட்டும் வேண்டும்.\" — பக்தி இலக்கியம்", "tags": ["கடல்", "குழந்தை", "அலை", "காப்பு", "தந்தை"]}, {"id": 21, "title": "முடக்குவாதம் குணமடைந்தது", "category": "உடல் நலம்", "story": "புதுவையில் கமலாதேவி 5 ஆண்டு முடக்குவாதத்தால் படுக்கையில் இருந்தாள். மகள் ஸ்ரீதேவி சிர்டி விபூதி தினமும் தேய்த்தாள். 41 நாட்களில் கால்களில் உணர்வு திரும்பியது. 3 மாதத்தில் நடக்க ஆரம்பித்தாள். ஒரு வருடத்தில் சிர்டிக்கே நடந்து சென்று நன்றி சொன்னாள். அந்த ஒரு கணம் ஸ்ரீதேவிக்கு மறக்க முடியாத தருணம்.", "devotee": "கமலாதேவி, ஸ்ரீதேவி", "location": "புதுவை", "tamil_quote": "\"பக்தியே மிகப் பெரிய மருந்து; சரணாகதியே உடலின் ஆரோக்கியம்.\" — சாய் சத்சரித்ரா", "tags": ["முடக்குவாதம்", "விபூதி", "நடை", "தாயார் மகள்", "குணம்"]}, {"id": 22, "title": "தொலைந்த குழந்தை மீண்டது", "category": "குடும்ப வாழ்க்கை", "story": "பெங்களூர் mall-ல் ஸ்வர்ணலட்சுமியின் 4 வயது மகன் ரோஹித் தொலைந்தான். 2 மணி நேரம் தேடினாள். 'சாய்பாபா, என் குழந்தையை திரும்ப கொடு' என்று வேண்டினாள். 'ஒரு சின்ன குழந்தை கண்டெடுக்கப்பட்டது' என்று அறிவிப்பு வந்தது. உதவி மையத்தில் ரோஹித் ஐஸ்கிரீம் சாப்பிட்டுக்கொண்டிருந்தான். 'ஒரு தாத்தா அழைத்து வந்தார், அம்மா வருவாள் என்று சொன்னார்' என்று கூறினான். அந்த தாத்தா யாரும் இல்லை.", "devotee": "ஸ்வர்ணலட்சுமி", "location": "பெங்களூரு", "tamil_quote": "\"கனவில் வந்து பாதை காட்டுவான்; பாபா குடும்பத்திற்கு அந்நியன் இல்லை.\" — சிர்டி நம்பிக்கை", "tags": ["குழந்தை", "mall", "தொலைந்தது", "தாத்தா", "திரும்பல்"]}, {"id": 23, "title": "நீதி கிடைத்தது", "category": "வாழ்க்கை அற்புதம்", "story": "சேலத்தில் சந்தானத்தின் 5 ஏக்கர் நிலம் மோசடியில் கைப்பற்றப்பட்டது. 10 ஆண்டு நீதிமன்ற போராட்டம். மனைவி கவிதா 'சத்தியம் வெல்லும், சாய்பாபாவிடம் சரணடைவோம்' என்று தேற்றினாள். 11வது ஆண்டில் புதிய நீதிபதி வந்தார். உண்மை சாட்சி மனம் மாறி உண்மை சொன்னான். தீர்ப்பு சந்தானத்திற்கு சாதகமாக வந்தது. நிலம் திரும்பியது.", "devotee": "சந்தானம், கவிதா", "location": "சேலம்", "tamil_quote": "\"இறைவன் தரும் தாமதம் நிராகரிப்பு அல்ல; நல்லதற்கான காத்திருப்பு.\" — சாய் அருளுரை", "tags": ["நீதி", "நிலம்", "சத்தியம்", "நீதிமன்றம்", "மோசடி"]}, {"id": 24, "title": "குடிப்பழக்கம் நீங்கியது", "category": "குடும்ப வாழ்க்கை", "story": "தஞ்சாவூரில் ஆனந்தியின் கணவன் முருகன் தினமும் குடிப்பான். குழந்தைகள் பயந்து ஓடுவார்கள். ஆனந்தி தினமும் சாய் பூஜை செய்தாள். ஒரு இரவு கனவில் முருகன் கோரமான காட்சி கண்டான். தன் குழந்தைகள் வறுமையில் அழுவதும், மனைவி அவமானத்தில் வீழ்வதும் தெளிவாக தெரிந்தது. ஒரு முதியவர் 'முருகன், உன் குடும்பம் அழுகிறது' என்று கூறினார். அதிர்ச்சியில் விழித்தான். அன்றிலிருந்து ஒரு துளியும் குடிக்கவில்லை. குடும்பம் புது வாழ்க்கை பெற்றது.", "devotee": "ஆனந்தி", "location": "தஞ்சாவூர்", "tamil_quote": "\"குடும்பம் என்பது இறைவன் கட்டிய கோவில்; அதை காப்பவன் சாய்பாபா.\" — பக்தர் உரை", "tags": ["குடிப்பழக்கம்", "கனவு", "மாற்றம்", "குடும்பம்", "தாயார்"]}, {"id": 25, "title": "மனச்சோர்விலிருந்து மீட்சி", "category": "உளவியல் குணம்", "story": "புனேவில் விக்ரம் கடுமையான மனச்சோர்வால் வாழ்க்கையை முடிக்க நினைத்தான். நண்பன் சிர்டி அழைத்தான். சமாதியில் அமர்ந்தபோது ஒரு தெய்வீக கரம் தோளில் வைக்கப்படுவதை உணர்ந்தான். 'உன் வாழ்க்கை உன்னுடையதல்ல, என்னுடையது. உன்னை நான் படைத்தேன்' என்ற குரல் மனதில் கேட்டது. கண்ணீர் வந்தது. உளவியல் ஆலோசனை எடுத்தான். குணமடைந்தான். இன்று mental health counselor ஆக பணியாற்றுகிறான்.", "devotee": "விக்ரம்", "location": "புனே", "tamil_quote": "\"மனதின் காயங்கள் மருந்தால் ஆறாது; இறைவனின் அன்பால் மட்டுமே குணமாகும்.\" — சாய் ஞானம்", "tags": ["மனச்சோர்வு", "வாழ்க்கை", "நம்பிக்கை", "counselor", "மாற்றம்"]}, {"id": 26, "title": "மூளை கட்டி மறைந்தது", "category": "உடல் நலம்", "story": "நாக்பூரில் கல்யாணிக்கு மூளையில் கட்டி கண்டறியப்பட்டது. உடனடி அறுவை தேவையென்றனர். கணவன் 9 வியாழன் விரதம் இருந்தார். 5வது வியாழன் MRI: கட்டி 30% சுருங்கியிருந்தது. 9வது வியாழன்: 70% சுருங்கியிருந்தது. அறுவை தேவையில்லை என்றனர். 3 மாதத்தில் கட்டி முற்றிலும் மறைந்தது. குடும்பம் சிர்டி சென்று நன்றி செலுத்தியது.", "devotee": "கல்யாணி ரஸ்தோகி", "location": "நாக்பூர்", "tamil_quote": "\"இறைவனை நம்பு; நோய் உன்னை விட்டு விலகும். ஐயனை அழை; வலி மறையும்.\" — தமிழ் பக்தி மரபு", "tags": ["மூளை கட்டி", "விரதம்", "MRI", "குணம்", "குடும்பம்"]}, {"id": 27, "title": "கிணறு நிரம்பியது", "category": "இயற்கை அற்புதம்", "story": "அகமதுநகரில் தாத்யா பாட்டீலின் கிணறு கோடையில் வற்றியது. பயிர்கள் வாடின. கிணற்றில் விபூதி போட்டு 'பாபா, என் குடும்பம் இந்த பயிரை நம்பியிருக்கு' என்று வேண்டினார். மறுநாள் காலையில் கிணறு முன்னெப்போதும் இல்லாத அளவு நிரம்பியது. அருகில் உள்ள கிணறுகள் தொடர்ந்தும் வறட்சியில். தாத்யாவின் கிணறு மட்டும் கோடை முழுவதும் நீர் தந்தது.", "devotee": "தாத்யா பாட்டீல்", "location": "அகமதுநகர்", "tamil_quote": "\"இயற்கையை ஆள்பவன் இறைவன்; அவனை அழைத்தால் மேகமே கட்டளை கேட்கும்.\" — சாய் வாக்கு", "tags": ["கிணறு", "நீர்", "விபூதி", "விவசாயம்", "இயற்கை"]}, {"id": 28, "title": "இதய அறுவை தேவையில்லை", "category": "உடல் நலம்", "story": "சென்னையில் 60 வயது ஸ்ரீநிவாசனுக்கு மூன்று இடங்களில் blockage. Bypass surgery உடனடி வேண்டும் என்றனர். மகள் சுமதி சிர்டி 3 நாட்கள் தங்கி பிரார்த்தித்தாள். மறு Angiogram: 95% blockage 60%க்கு வந்திருந்தது. 'ஒரு வாரத்தில் சாத்தியமில்லை' என்று மருத்துவர் கூறினார். Bypass தேவையில்லை என்று அறிவித்தனர். Stent மட்டும் போட்டனர்.", "devotee": "ஸ்ரீநிவாசன்", "location": "சென்னை", "tamil_quote": "\"துயரம் வரும்போது சாய்யை நினை; அன்பர்க்கு அவன் நிழல் போல் நிற்பான்.\" — பாபா அருளுரை", "tags": ["இதயம்", "Bypass", "Angiogram", "குணம்", "மகள்"]}, {"id": 29, "title": "சத்தியம் வெற்றி பெற்றது", "category": "வாழ்க்கை அற்புதம்", "story": "மகாராஷ்டிரா கிராம பஞ்சாயத்தில் நேர்மையான வேட்பாளர் பாலகிருஷ்ண மோசடியால் தோற்றார். தேர்தல் கமிஷனில் மனு கொடுத்தார். 'சத்தியம் வெல்லட்டும்' என்று மட்டும் வேண்டினார். விசாரணையில் மோசடி வெளியே வந்தது. மறு தேர்தலில் பெரிய வித்தியாசத்தில் வென்றார்.", "devotee": "பாலகிருஷ்ண பாட்டீல்", "location": "மகாராஷ்டிரா", "tamil_quote": "\"வாழ்க்கையில் பாதை மறைந்தாலும் சாய் ஒளி மறைவதில்லை.\" — தமிழ் பக்தர் வாக்கு", "tags": ["தேர்தல்", "சத்தியம்", "மோசடி", "வெற்றி", "நேர்மை"]}, {"id": 30, "title": "குழந்தை நஞ்சிலிருந்து பிழைத்தது", "category": "உயிர் காத்தல்", "story": "அகமதுநகரில் ஊர்மிளாவின் 3 வயது மகள் கொசு கொல்லி திரவம் குடித்தாள். மயக்கம். மருத்துவமனை போகும் வழியில் 'சாய்பாபா, என் குழந்தை' என்று கதறினாள். ICU-வில் 36 மணி நேரம். குழந்தை கண் திறந்து 'அம்மா' என்று கூவியது. 'இந்த அளவு நஞ்சு 3 வயது குழந்தைக்கு இந்த recovery நான் 25 ஆண்டில் பார்த்ததில்லை' என்று மருத்துவர் கூறினார்.", "devotee": "ஊர்மிளா", "location": "அகமதுநகர்", "tamil_quote": "\"என்னை நம்பிக்கையோடு அழைத்தால், கடல் நடுவிலும் நான் கரை காட்டுவேன்.\" — சாய்பாபா", "tags": ["நஞ்சு", "குழந்தை", "ICU", "காப்பு", "தாயார்"]}, {"id": 31, "title": "விவாகரத்துக்கு பின் புது வாழ்க்கை", "category": "வாழ்க்கை அற்புதம்", "story": "நாசிக்கில் சுமித்ரா விவாகரத்துக்கு பின் இரண்டு குழந்தைகளுடன் தனியாக ஆனாள். வேலை இல்லை. சிர்டியில் ஒரு வாரம் தங்கினாள். ஒரு மூதாட்டி 'பாபா உன்னை விடமாட்டார்' என்று கூறினாள். school-ல் teacher post-க்கு apply செய்தாள். Principal 'கனவில் ஒரு முதியவர் ஒரு பெண்ணை refer பண்ணினார், நீங்கதான்' என்று வேலை கொடுத்தார். இன்று senior teacher. குழந்தைகள் நல்லா படிக்கிறார்கள்.", "devotee": "சுமித்ரா", "location": "நாசிக்", "tamil_quote": "\"இழப்பு என்பது இறைவன் கொடுக்கும் திருப்பம்; புதிய வாழ்வின் வாயில்.\" — சாய் ஞானம்", "tags": ["விவாகரத்து", "teacher", "குழந்தை", "கனவு", "புது வாழ்க்கை"]}, {"id": 32, "title": "Medical college admission", "category": "கல்வி", "story": "ஹைதராபாத்தில் ஸ்ரீதேவி NEET எழுதினாள். Waitlist 47வது இடம். அப்பா 6 வியாழன் விரதம் இருந்தார். Counselling rounds முடியும்போது 46 பேரும் வேற கல்லூரி தேர்வு செய்ய ஸ்ரீதேவிக்கு government seat வந்தது. அப்பா அழுதார். 'பாபா இடம் கொடுத்தார்' என்று குடும்பம் மகிழ்ந்தது.", "devotee": "ஸ்ரீதேவி", "location": "ஹைதராபாத்", "tamil_quote": "\"தந்தையின் கனவு மகனின் கடமை; இறைவன் அந்த கடமைக்கு துணை நிற்பான்.\" — தமிழ் மரபு", "tags": ["MBBS", "NEET", "waitlist", "admission", "அப்பா"]}, {"id": 33, "title": "பொய் வழக்கிலிருந்து விடுதலை", "category": "வாழ்க்கை அற்புதம்", "story": "மும்பையில் சரோஜாவின் கணவன் பொய் வழக்கில் சிறையில். மனைவி தினமும் சாய் கோவிலில் பிரார்த்தனை. ஒரு பிரபல வழக்கறிஞர் வந்து 'கனவில் ஒரு முதியவர் இந்த வீட்டிற்கு வரச் சொன்னார்' என்று இலவசமாக நடத்தினார். உண்மை வெளிப்பட்டது. கணவன் விடுதலையானார்.", "devotee": "சரோஜா", "location": "மும்பை", "tamil_quote": "\"பாபா பக்தனுக்கு துன்பம் கொடுப்பதில்லை; பாடம் கற்பிக்கிறான் மட்டுமே.\" — சாய் சத்சரித்ரா", "tags": ["சிறை", "விடுதலை", "வழக்கறிஞர்", "கனவு", "நீதி"]}, {"id": 34, "title": "ஊமை சிறுவன் பேசினான்", "category": "உடல் நலம்", "story": "சிர்டியில் கோவிந்த் நார்வேகரின் 8 வயது ஊமை மகன் சமாதியில் படாடோபமாக அழுதான். கனவில் முதியவர் நாக்கை தொட்டார். மறுநாள் காலை 'அம்மா' என்று சொன்னான். தாயார் நிலைகுலைந்தாள். அந்த ஒரு வார்த்தை 8 ஆண்டு அமைதியை உடைத்தது. இன்று அவன் பள்ளியில் படிக்கிறான்.", "devotee": "கோவிந்த் நார்வேகர்", "location": "சிர்டி", "tamil_quote": "\"உடலை இறைவன் கட்டினான்; உயிரை அவனே காக்கிறான் — நாம் வெறும் நிமித்தம்.\" — சாய் ஞானம்", "tags": ["ஊமை", "குழந்தை", "பேச்சு", "கனவு", "அற்புதம்"]}, {"id": 35, "title": "கடல் புயலில் மீட்சி", "category": "உயிர் காத்தல்", "story": "விசாகப்பட்டிணம் மீனவர் ரங்கய்யா புயலில் சிக்கினார். படகு கட்டுப்பாட்டை இழந்தது. 'சாய்யே காப்பாற்று!' என்று கூவினார். ஒரு அலை படகை கரை நோக்கி தள்ளியது. சேதமில்லாமல் கரை சேர்ந்தனர். 'உன்னோடு ஒரு ஒளி வட்டம் வந்தது' என்று மற்ற மீனவர்கள் கூறினர்.", "devotee": "ரங்கய்யா", "location": "விசாகப்பட்டிணம்", "tamil_quote": "\"மரணம் கதவு தட்டும்போது, பாபாவை நினைத்தால் மரணமே வணங்கும்.\" — பக்தர் அனுபவம்", "tags": ["கடல்", "புயல்", "மீனவர்", "ஒளி", "காப்பு"]}, {"id": 36, "title": "தாயின் இறுதி விருப்பம்", "category": "குடும்ப வாழ்க்கை", "story": "கேரளாவில் சதாசிவம் நாயரின் தாயார் 82 வயதில் மருத்துவமனையில் இறுதி மூச்சு விட்டார். 'ஒருமுறையாவது பேசணும்' என்று வேண்டினான். அன்றிரவு தாயார் கண் திறந்தார். 'சாய் வந்தார் என்னை அழைக்க, கவலைப்படாதே' என்று கூறி சாய் நாமம் சொல்லிக்கொண்டே சாந்தமாக கண் மூடினார்.", "devotee": "சதாசிவம் நாயர்", "location": "கேரளா", "tamil_quote": "\"குடும்பத்தை பாபா கட்டுகிறான்; நாம் செய்வது பிரார்த்தனை மட்டுமே.\" — சாய் வாக்கு", "tags": ["தாயார்", "இறுதி காலம்", "சாந்தி", "அமைதி", "மகன்"]}, {"id": 37, "title": "தொலைந்த பணம் திரும்பியது", "category": "அன்றாட வாழ்க்கை", "story": "விஜயவாடாவில் மாணிக்யம் வங்கியில் எடுத்த 50,000 ரூபாய் தொலைந்தது. மனைவி 'பாபா, இந்த பணம் மூன்று மாத EMI, திரும்பிக் கொடு' என்று வேண்டினாள். அன்று இரவு ஒரு இளைஞன் 'கடை முன்னால் இந்த பை கிடந்தது' என்று கொடுத்தான். 50,000 முழுவதும். 'என்னை கடவுளே அனுப்பினார்' என்று சொல்லி கையை கூப்பி சென்றான்.", "devotee": "மாணிக்யம்", "location": "விஜயவாடா", "tamil_quote": "\"ஒவ்வொரு சிறு உதவியிலும் சாய்யின் கை இருக்கிறது; கண்கள் திறந்திருக்க வேண்டும்.\" — பக்தி இலக்கியம்", "tags": ["பணம்", "நேர்மை", "திரும்பல்", "இளைஞன்", "உதவி"]}, {"id": 38, "title": "வெட்டுக்கிளியிடம் பயிர் காப்பு", "category": "இயற்கை அற்புதம்", "story": "மகாராஷ்டிரா விவசாயி கிஷோர் வெட்டுக்கிளி தாக்குதலில் பயிரை இழக்கும் நிலை வந்தது. சிர்டி விபூதி வயல் சுற்றுப்புறம் தெளித்தார். வெட்டுக்கிளிகள் கிஷோரின் வயல் எல்லையில் திரும்பின. பயிர் முழுமையாக காப்பாற்றப்பட்டது. அறுவடை நல்லாக நடந்தது.", "devotee": "கிஷோர் பட்வர்தன்", "location": "மகாராஷ்டிரா", "tamil_quote": "\"கூட்டுப் பிரார்த்தனை என்பது மலைகளையும் உருக்கும்; இறைவன் மறுக்கமாட்டான்.\" — தமிழ் பக்தி", "tags": ["வெட்டுக்கிளி", "வயல்", "விபூதி", "விவசாயம்", "காப்பு"]}, {"id": 39, "title": "நேர்மையான அதிகாரி காப்பாற்றப்பட்டார்", "category": "வாழ்க்கை அற்புதம்", "story": "புனேவில் நேர்மையான போலீஸ் inspector மிலிந்த் ஜோஷி பொய் வழக்கில் suspend ஆனார். 'சாய் நாதா, நீதி நீயே கொடு' என்று சரணடைந்தார். நீதிமன்றம் தாமாகவே வழக்கை எடுத்தது. குற்றம் சாட்டியவர்களே குற்றவாளிகள் என்று நிரூபிக்கப்பட்டது. Promotion கூட கிடைத்தது.", "devotee": "மிலிந்த் ஜோஷி", "location": "புனே", "tamil_quote": "\"நேர்மையாக வாழ்பவனை இறைவன் கைவிடமாட்டான்; காலம் கடந்தாலும் கருணை வரும்.\" — திருக்குறள் ஒலி", "tags": ["போலீஸ்", "நேர்மை", "நீதிமன்றம்", "promotion", "விடுதலை"]}, {"id": 40, "title": "Kidney function மீண்டது", "category": "உடல் நலம்", "story": "சூரத்தில் ஜனார்தன் பாண்டேவிற்கு இரு கிட்னிகளும் செயல் இழந்தன. வாரம் மூன்று dialysis. மகன் விவேக் 9 வியாழன் விரதம் இருந்தான். 9வது வியாழன் kidney function 40%. ஒரு வருடத்தில் 60%. Dialysis நின்றது.", "devotee": "ஜனார்தன் பாண்டே", "location": "சூரத்", "tamil_quote": "\"விரதமும் பிரார்த்தனையும் மனித முயற்சி; அதற்கு உயிர் கொடுப்பது பாபாவின் கருணை.\" — சாய் வழக்கு", "tags": ["kidney", "dialysis", "விரதம்", "குணம்", "மகன்"]}, {"id": 41, "title": "பேச்சு போட்டியில் முதல் பரிசு", "category": "கல்வி", "story": "நாசிக்கில் அனுஷா மாநில பேச்சு போட்டிக்கு 3 நாட்கள் முன் தொண்டை வலி வந்தது. விபூதி குடித்தாள். 'சாய்யே, உன் திருவருளால் மட்டுமே' என்று வேண்டினாள். போட்டிக்கு முன்நாள் இரவு குரல் திரும்பியது. மேடையில் தெளிவாகவும் ஆழமாகவும் பேசினாள். முதல் பரிசு வென்றாள்.", "devotee": "அனுஷா தேஸாய்", "location": "நாசிக்", "tamil_quote": "\"தோல்வி முடிவல்ல; பாபாவை நம்பி மீண்டும் எழு — வெற்றி காத்திருக்கும்.\" — சாய் அருளுரை", "tags": ["பேச்சு போட்டி", "குரல்", "விபூதி", "வெற்றி", "மாணவி"]}, {"id": 42, "title": "பகை நட்பாக மாறியது", "category": "வாழ்க்கை அற்புதம்", "story": "அஹமதாபாத்தில் ஹரிஷ் மேத்தா வியாபார நண்பனால் 15 லட்சம் துரோகம். மனைவி 'பாபாவிடம் கொடு' என்றாள். ஒரு வருடம் கழித்து நண்பன் வந்து அழுது மன்னிப்பு கேட்டான். 'கனவில் ஒரு முதியவர் தண்டித்தார்' என்று கூறி கணக்கு தீர்த்தான். நட்பு மீண்டது.", "devotee": "ஹரிஷ் மேத்தா", "location": "அஹமதாபாத்", "tamil_quote": "\"இறைவன் தரும் தாமதம் நிராகரிப்பு அல்ல; நல்லதற்கான காத்திருப்பு.\" — சாய் அருளுரை", "tags": ["துரோகம்", "மன்னிப்பு", "நட்பு", "கனவு", "வியாபாரம்"]}, {"id": 43, "title": "Parkinson's குணமடைந்தது", "category": "உடல் நலம்", "story": "கும்பகோணம் ஆசிரியர் சுப்ரமணியம் Parkinson's disease-ல் கை நடுங்கியது. சிர்டியில் 21 நாட்கள் தங்கினார். தெய்வீக அமைதி வந்தது. 3 மாதத்தில் கை நடுக்கம் 70% குறைந்தது. சாக்பீஸ் பிடித்து எழுத ஆரம்பித்தார். ஆசிரியர் பணி தொடர்ந்தார்.", "devotee": "சுப்ரமணியம்", "location": "கும்பகோணம்", "tamil_quote": "\"நோயில் சாய்யை நினைத்தவனுக்கு நொடியில் நலம் வரும்; நம்பிக்கை இருக்கட்டும்.\" — சிர்டி வாக்கியம்", "tags": ["Parkinson", "நரம்பு நோய்", "ஆசிரியர்", "சிர்டி", "குணம்"]}, {"id": 44, "title": "மகன் திருந்தினான்", "category": "குடும்ப வாழ்க்கை", "story": "புனேவில் லலிதாவின் மகன் சந்தோஷ் drug trafficking-ல் கைது. தாயார் சாய் கோவிலில் 'என் மகன் திருந்தட்டும்' என்று வேண்டினாள். சிறையில் சந்தோஷ் திடீரென்று உண்மையை சொன்னான். சாட்சி ஆனான். விரைவில் விடுதலை. 'அம்மா, நான் தவறு செய்தேன்' என்று காலில் விழுந்தான். இன்று drug rehabilitation-ல் counselor.", "devotee": "லலிதா", "location": "புனே", "tamil_quote": "\"அன்னையின் கண்ணீர் தாரகமந்திரம்; அது இறைவனை தொட்டு கடமை செய்வான்.\" — தமிழ் மரபு", "tags": ["மகன்", "திருந்தல்", "drug", "counselor", "தாய்"]}, {"id": 45, "title": "மலை விபத்திலிருந்து காப்பு", "category": "உயிர் காத்தல்", "story": "மகாராஷ்டிரா மலை வழியில் கோபாலன் குடும்பம் கார்ல பயணம். Brake fail. பள்ளம் 500 அடி. திடீரென்று ஒரு பெரிய கல் வந்தது. Tire அதில் மோதி நின்றது. கார் மூன்று அங்குல தூரத்தில் பள்ளம். 'அந்த கல் வழக்கமாக இல்லை' என்று லாரி டிரைவர் கூறினான். குடும்பம் பத்திரம்.", "devotee": "கோபாலன் குடும்பம்", "location": "மகாராஷ்டிரா மலை", "tamil_quote": "\"யாரும் அற்றவர் அல்ல; சாய் இருக்கும்போது தனிமை என்பதே இல்லை.\" — சாய் வாக்கு", "tags": ["கார்", "மலை", "brake fail", "கல்", "குடும்பம்"]}, {"id": 46, "title": "தத்தெடுப்பு நடந்தது", "category": "குடும்ப வாழ்க்கை", "story": "சென்னையில் அர்ச்சனா-ரவி தம்பதியர் 5 ஆண்டு CARA காத்திருப்பு. ஒவ்வொரு முறையும் match ஆகவில்லை. சிர்டி சென்று 'ஒரு குழந்தைக்கு அம்மா ஆக்கு' என்று வேண்டினாள். ஒரு மாதத்தில் CARA-விலிருந்து call: '6 மாத குழந்தை match ஆகியிருக்கு'. குழந்தையை தூக்கிப்பிடிக்கும்போது அர்ச்சனா அழுதாள். குழந்தை புன்னகைத்தது.", "devotee": "அர்ச்சனா, ரவி", "location": "சென்னை", "tamil_quote": "\"தாய் வேண்டுவாள்; இறைவன் கேட்பான் — இதுவே குடும்பத்தின் அஸ்திவாரம்.\" — பக்தி இலக்கியம்", "tags": ["தத்தெடுப்பு", "CARA", "குழந்தை", "குடும்பம்", "அம்மா"]}, {"id": 47, "title": "H1B Visa கிடைத்தது", "category": "வாழ்க்கை அற்புதம்", "story": "கோவையில் Software Engineer கார்த்திக் H1B visa மூன்று முறை reject. சிர்டி சென்று 'உன் விருப்பம், போகணும்னா நீ வழி காட்டு' என்று சரணடைந்தான். நான்காம் முறை interview-ல் 'Your application is approved'. அந்த officer கையில் சாய் badge இருந்தது என்று பிறகு தெரிந்தது.", "devotee": "கார்த்திக்", "location": "கோவை", "tamil_quote": "\"வாழ்க்கையில் பாதை மறைந்தாலும் சாய் ஒளி மறைவதில்லை.\" — தமிழ் பக்தர் வாக்கு", "tags": ["H1B", "visa", "அமெரிக்கா", "சரணாகதி", "வெற்றி"]}, {"id": 48, "title": "விஷ காளான் உண்டும் பிழைத்தனர்", "category": "உயிர் காத்தல்", "story": "நாசிக்கில் ஒரு குடும்பம் காட்டில் விஷ காளான் உண்டு நால்வரும் மயக்கம். மூத்தவர் சாய்பாபாவை வேண்டினார். ICU-வில் 48 மணி நேரம். நால்வரும் மீண்டனர். 'இந்த type காளான் உண்டவர்கள் recover ஆவதில்லை. இது அற்புதம்' என்று மருத்துவர் கூறினார்.", "devotee": "ஆனந்த் குடும்பம்", "location": "நாசிக்", "tamil_quote": "\"ஆபத்தில் அழைத்தால் அவன் வருவான்; ஆனால் மனதில் அவன் இருக்கவேண்டும்.\" — சிர்டி உரை", "tags": ["விஷ காளான்", "ICU", "குடும்பம்", "குணம்", "அற்புதம்"]}, {"id": 49, "title": "மூட்டு வலி குணமடைந்தது", "category": "உடல் நலம்", "story": "திருவனந்தபுரம் 82 வயது வெங்கடேஸ் ஐயர் மூட்டு மாற்று அறுவை ஆபத்தானது என்று கூறினர். மகன் சிர்டி விபூதி தினமும் தடவினான். 40 நாளில் வலி குறைந்தது. 3 மாதத்தில் தடியின்றி நடந்தார். 85 வயதில் சிர்டிக்கே சென்று நன்றி செலுத்தினார்.", "devotee": "வெங்கடேஸ் ஐயர்", "location": "திருவனந்தபுரம்", "tamil_quote": "\"நம்பிக்கை என்பது மருந்தை விட வலிமையானது; பாபாவின் கருணை என்பது அமிர்தத்தை விட இனிமையானது.\" — சாய் வாக்கு", "tags": ["மூட்டு வலி", "முதியவர்", "விபூதி", "நடை", "குணம்"]}, {"id": 50, "title": "சகோதரர்கள் ஒன்றானனர்", "category": "குடும்ப வாழ்க்கை", "story": "கோலாப்பூரில் நான்கு சகோதரர்கள் 15 ஆண்டு பேசாமல் இருந்தனர். தாயார் இறக்கும் தருவாயில் 'ஒன்று சேரட்டும்' என்று வேண்டினாள். அவர் இறந்த இரவே நால்வருக்கும் கனவில் 'அம்மா வந்து ஒன்னு சேரணும்னு சொன்னாள்' என்று ஒரே நேரத்தில் தோன்றியது. அந்த இரவே ஒன்று சேர்ந்தனர். வழக்கு திரும்பப் பெறப்பட்டது.", "devotee": "நான்கு சகோதரர்கள்", "location": "கோலாப்பூர்", "tamil_quote": "\"கனவில் வந்து பாதை காட்டுவான்; பாபா குடும்பத்திற்கு அந்நியன் இல்லை.\" — சிர்டி நம்பிக்கை", "tags": ["சகோதரர்", "ஒற்றுமை", "தாயார்", "கனவு", "குடும்பம்"]}, {"id": 51, "title": "ஆற்றில் மீட்பு", "category": "உயிர் காத்தல்", "story": "கோதாவரி கரையில் ராதாபாயின் 7 வயது மகன் கோவிந்தன் நீரோட்டத்தில் இழுக்கப்பட்டான். தாயார் 'சாய்பாபா' என்று கதறினாள். ஒரு வயதான மீனவர் குதித்து மீட்டார். நன்றி சொல்ல திரும்பினால் அவர் மறைந்திருந்தார். யாரும் அவரை அறிமுகம் சொல்லவில்லை.", "devotee": "ராதாபாய்", "location": "கோதாவரி கரை", "tamil_quote": "\"தண்ணீரில் மூழ்கியவனையும், தீயில் விழுந்தவனையும் பாபா காப்பான் — நம்பிக்கை மட்டும் வேண்டும்.\" — பக்தி இலக்கியம்", "tags": ["ஆறு", "குழந்தை", "மீனவர்", "காப்பு", "தாய்"]}, {"id": 52, "title": "Bar Exam தேர்ச்சி", "category": "கல்வி", "story": "மும்பையில் விக்னேஷ் Bar exam 5 முறை தோல்வி. சிர்டி சென்று 'என்னால் முடியவில்லை, நீ முடிக்க வேண்டும்' என்று சரணடைந்தான். 6வது முறை தேர்ச்சி. Advocate licence கிடைத்தது. 'பாபா எழுதினார், நான் கையை மட்டும் பிடித்தேன்' என்றான்.", "devotee": "விக்னேஷ்", "location": "மும்பை", "tamil_quote": "\"படிப்பில் உழைப்பு மனிதன்; வெற்றியை கொடுப்பவன் இறைவன்.\" — சாய் உபதேசம்", "tags": ["Bar exam", "வழக்கறிஞர்", "தேர்வு", "சரணாகதி", "வெற்றி"]}, {"id": 53, "title": "ஒளி தரிசனம்", "category": "ஆன்மீக அனுபவம்", "story": "அகமதுநகரில் மனோகர் கடும் இழப்பில் வாழ்வை வெறுத்தான். சாய்பாபா படம் பார்த்து அழுதான். படத்திலிருந்து தெய்வீக ஒளி வெளிப்பட்டு சுற்றியது. 'நான் உன்னோடு இருக்கிறேன்' என்ற குரல் கேட்டது. அமைதி பிறந்தது. இன்று Spiritual counselor.", "devotee": "மனோகர்", "location": "அகமதுநகர்", "tamil_quote": "\"கனவில் வருவது மட்டும் அல்ல; விழிப்பிலும் அவன் எங்கும் இருக்கிறான்.\" — சாய் ஞானம்", "tags": ["ஒளி", "தரிசனம்", "ஆன்மீகம்", "அமைதி", "மாற்றம்"]}, {"id": 54, "title": "எலும்பு வேகமாக சேர்ந்தது", "category": "உடல் நலம்", "story": "மதுரையில் சோமசுந்தரம் விபத்தில் கால் மூன்று இடத்தில் முறிந்தது. மனைவி 21 நாட்கள் விரதம். 21வது நாள் X-ray: 40% ஒட்டிவிட்டது. '3 வாரத்தில் நடக்கவே கூடாது' என்று மருத்துவர் கூறினார். 5 மாதத்தில் வேலைக்கு திரும்பினார்.", "devotee": "சோமசுந்தரம்", "location": "மதுரை", "tamil_quote": "\"உடல் நோயை மருத்துவர் குணப்படுத்துகிறார்; ஆன்மா நோயை இறைவன் மட்டுமே தீர்க்கிறான்.\" — திருமூலர்", "tags": ["எலும்பு முறிவு", "விரதம்", "வேக குணம்", "வேலை", "குடும்பம்"]}, {"id": 55, "title": "மழையால் தீ அணைந்தது", "category": "உயிர் காத்தல்", "story": "ஔரங்காபாத்தில் பார்வதி தனியாக இருக்கும்போது Gas cylinder வெடித்தது. கதவு திறக்கவில்லை. 'சாய் நாதா, காப்பாற்று!' என்று கதறினார். மேகமில்லா நேரத்தில் மழை பொழிந்தது. அந்த வீட்டில் மட்டும். தீ அணைந்தது. அண்டை வீட்டினர் 'வெயிலில் இங்கே மட்டும் மழை' என்று வியந்தனர்.", "devotee": "பார்வதி", "location": "ஔரங்காபாத்", "tamil_quote": "\"என்னை நம்பிக்கையோடு அழைத்தால், கடல் நடுவிலும் நான் கரை காட்டுவேன்.\" — சாய்பாபா", "tags": ["தீ", "மழை", "Gas", "முதியவர்", "காப்பு"]}, {"id": 56, "title": "போதை மீட்சி", "category": "குடும்ப வாழ்க்கை", "story": "கேரளாவில் சாவித்திரியின் மகன் அரவிந்த் Heroin அடிமை. மூன்று முறை rehabilitation தோல்வி. சாவித்திரி 41 நாட்கள் சிர்டியில் பிரார்த்தித்தாள். 41வது நாள் அரவிந்துக்கு கோரமான கனவு வந்தது. 'அம்மா, என்னை கொண்டுவா, மாறுவேன்' என்று அழைத்தான். போதை விட்டான். இன்று rehabilitation counselor.", "devotee": "சாவித்திரி", "location": "கேரளா", "tamil_quote": "\"குடும்பம் என்பது இறைவன் கட்டிய கோவில்; அதை காப்பவன் சாய்பாபா.\" — பக்தர் உரை", "tags": ["Heroin", "போதை", "மீட்சி", "தாய்", "counselor"]}, {"id": 57, "title": "நெருப்பு நடை அற்புதம்", "category": "ஆன்மீக அனுபவம்", "story": "திருச்செந்தூரில் கோபாலகிருஷ்ண நெருப்பு நடை பொருத்தனம். 'பாபா, நீ என்னில் இரு. நான் நடக்க மாட்டேன், நீ நடப்பாய்' என்று சொல்லிக்கொண்டு 15 அடி நெருப்பு தண்டவாளம் கடந்தார். பாதங்கள் வேகவில்லை. 'நெருப்பு கீழே போனது போல் தெரிந்தது' என்று கண்டவர்கள் கூறினர்.", "devotee": "கோபாலகிருஷ்ண", "location": "திருச்செந்தூர்", "tamil_quote": "\"ஆன்மாவின் ஆழத்தில் சாய் வசிக்கிறான்; மௌனமே அவன் மொழி.\" — சிர்டி உரை", "tags": ["நெருப்பு நடை", "பொருத்தனம்", "திருவிழா", "அற்புதம்", "பக்தி"]}, {"id": 58, "title": "20 ஆண்டு சொத்து வழக்கு", "category": "வாழ்க்கை அற்புதம்", "story": "கர்நாடகாவில் ராமைய்யா 20 ஆண்டு வீட்டு சொத்து வழக்கு நடத்தினார். 'சத்தியம் வெல்ல வேண்டும்' என்று மட்டும் வேண்டினார். 21வது ஆண்டில் புதிய நீதிபதி. எதிர்தரப்பு சாட்சி மனம் மாறி உண்மை சொன்னான். சொத்து கிடைத்தது. தந்தை படத்திற்கு முன்னால் 'அப்பா, உங்கள் கனவு நிறைவேறியது' என்று அழுதார்.", "devotee": "ராமைய்யா", "location": "கர்நாடகா", "tamil_quote": "\"இழப்பு என்பது இறைவன் கொடுக்கும் திருப்பம்; புதிய வாழ்வின் வாயில்.\" — சாய் ஞானம்", "tags": ["சொத்து", "நீதிமன்றம்", "சத்தியம்", "தந்தை", "வெற்றி"]}, {"id": 59, "title": "பக்கவாதத்திலிருந்து மீட்சி", "category": "உடல் நலம்", "story": "தூத்துக்குடியில் பரமேஸ்வரன் 58 வயதில் பக்கவாதம் வந்தது. மகன் சிர்டி விபூதி தினமும் தடவினான். சாய் பாடல்கள் கேட்கவைத்தான். 3 மாதத்தில் விரல் அசைவு. 2 வருடத்தில் தடியின்றி நடந்தார். மகனை தழுவிக்கொண்டார்.", "devotee": "பரமேஸ்வரன்", "location": "தூத்துக்குடி", "tamil_quote": "\"தியானம் செய்பவனுக்கு நோய் நெருங்காது; இறைவன் நினைப்பவனுக்கு மரணமும் வணங்கும்.\" — சாய் உபதேசம்", "tags": ["பக்கவாதம்", "விபூதி", "நடை", "மகன்", "குணம்"]}, {"id": 60, "title": "தலையில் கரம் வைத்தது", "category": "ஆன்மீக அனுபவம்", "story": "சிர்டியில் சுப்பாராவ் மாதங்களாக தீராத தலைவலியுடன் பிரார்த்தித்தார். திடீரென்று ஒரு கரம் தலையில் வைக்கப்படுவதை உணர்ந்தார். திரும்பி பார்த்தால் யாரும் இல்லை. தலைவலி அந்த தருணம் மறைந்தது. ஒரு வருடம் ஆனது, திரும்பி வரவில்லை.", "devotee": "சுப்பாராவ்", "location": "சிர்டி", "tamil_quote": "\"தவிப்போடு அழைத்தால் தாமதமின்றி வருவான்; சாய் அன்பர்க்கு அந்நியன் இல்லை.\" — பக்தி மரபு", "tags": ["தலைவலி", "கரம்", "சிர்டி", "குணம்", "அனுபவம்"]}, {"id": 61, "title": "பாம்பு தடுத்த விபத்து", "category": "உயிர் காத்தல்", "story": "அகமதுநகர் காட்டு வழியில் சுந்தர் குடும்பம் பயணம். பாம்பு வழி மறித்தது. 5 நிமிடம் நிறுத்தப்பட்டனர். முன்னே சென்றனர். 300 மீட்டர் தூரத்தில் மரம் விழுந்திருந்தது. சரியாக அந்த நேரத்தில் வந்திருந்தால் மோதியிருப்பார்கள். 'பாம்பு பாபாவின் தூதன்' என்று குடும்பம் நம்பியது.", "devotee": "சுந்தர் குடும்பம்", "location": "அகமதுநகர் காடு", "tamil_quote": "\"மரணம் கதவு தட்டும்போது, பாபாவை நினைத்தால் மரணமே வணங்கும்.\" — பக்தர் அனுபவம்", "tags": ["பாம்பு", "மரம்", "தாமதம்", "காப்பு", "காடு"]}, {"id": 62, "title": "தெய்வீக குரல் பாடியது", "category": "ஆன்மீக அனுபவம்", "story": "இந்தூரில் மாலதி ஆலய கைங்கர்யத்தில் பாட ஆரம்பித்தாள். திடீரென்று குரல் தெய்வீக இசையாக மாறியது. அனைவரும் வியந்தனர். பாடல் முடிந்த பிறகு குரல் சாதாரணமானது. 'நான் பாடவில்லை, பாபாவே பாடினார்' என்று கண்ணீரோடு கூறினாள்.", "devotee": "மாலதி", "location": "இந்தூர்", "tamil_quote": "\"இறைவனை தேடுபவன் தான் அவனை கண்டுபிடிக்கிறான்; அவன் எப்போதும் நம்மில் இருக்கிறான்.\" — சாய் வாக்கு", "tags": ["பாடல்", "குரல்", "தெய்வீகம்", "ஆன்மீகம்", "கருவி"]}, {"id": 63, "title": "ஆழ்துளையில் நீரூற்று", "category": "இயற்கை அற்புதம்", "story": "மகாராஷ்டிரா கிராமத்தில் 600 அடி தோண்டியும் நீர் இல்லை. அரசு கைவிட்டது. கிராம பெரியவர் ராமராவ் விபூதி போட்டார். 3 நாட்கள் பிரார்த்தனை. 4வது நாள் 620 அடியில் நீரூற்று கண்டனர். பெரும் நீர் வெள்ளம். கிராமம் முழுவதும் தண்ணீர்.", "devotee": "ராமராவ், கிராம மக்கள்", "location": "மகாராஷ்டிரா கிராமம்", "tamil_quote": "\"இறைவன் இயற்கையில் மறைந்திருக்கிறான்; நாம் அழைக்கும்போது வெளிப்படுகிறான்.\" — சாய் ஞானம்", "tags": ["ஆழ்துளை", "தண்ணீர்", "கிராமம்", "நீரூற்று", "விபூதி"]}, {"id": 64, "title": "விரோதி நண்பரானார்", "category": "வாழ்க்கை அற்புதம்", "story": "கோவையில் ஆசிரியர் கோவிந்தராஜன் principal-ல் கடும் விரோதம். வேலை இழக்கும் நிலை. 'என்னை காப்பாற்று, ஆனால் பகையை விரும்பவில்லை' என்று வேண்டினார். principal-ஓ அடி வழுக்கி விழுந்தார். கோவிந்தராஜன் மட்டும் தாங்கி ஆம்புலன்ஸ் அழைத்தார். principal 'நான் தவறாக நடந்தேன், மன்னிக்கவும்' என்று கூறினார்.", "devotee": "கோவிந்தராஜன்", "location": "கோவை", "tamil_quote": "\"பாபா பக்தனுக்கு துன்பம் கொடுப்பதில்லை; பாடம் கற்பிக்கிறான் மட்டுமே.\" — சாய் சத்சரித்ரா", "tags": ["விரோதம்", "நட்பு", "principal", "மன்னிப்பு", "கருணை"]}, {"id": 65, "title": "Colour blindness குறைந்தது", "category": "உடல் நலம்", "story": "ஹைதராபாத்தில் திலீப் ரெட்டியின் மகனுக்கு 4 வயதில் colour blindness. 'Genetic, சரி செய்ய முடியாது' என்றனர். சிர்டி சென்று வேண்டினார். Chennai கண் நிபுணரிடம் புதிய therapy. இரண்டு ஆண்டுகளில் 70% colour perception. 'Colour blindness-ல் இந்த அளவு improvement மிகவும் அரிது' என்று மருத்துவர் கூறினார்.", "devotee": "திலீப் ரெட்டி", "location": "ஹைதராபாத்", "tamil_quote": "\"விபூதி என்பது சாம்பல் அல்ல; அது பாபாவின் அன்பின் வடிவம்.\" — சிர்டி பக்தர் வாக்கு", "tags": ["colour blindness", "குழந்தை", "குணம்", "therapy", "தந்தை"]}, {"id": 66, "title": "ஒளி வட்டம் திருவிழாவில்", "category": "ஆன்மீக அனுபவம்", "story": "சிர்டியில் மகாசமாதி தினத்தன்று 50,000 பக்தர்கள் கூடினர். உச்ச பூஜை நேரத்தில் சமாதி மண்டபத்தின் மேல் நீலம் கலந்த வெண் ஒளி வட்டம் தோன்றியது. 2 நிமிடம் இருந்தது. புகைப்படங்களில் தெளிவாக பதிவானது. 'பாபா வந்தார்!' என்று கூட்டம் அலறியது.", "devotee": "50,000 பக்தர்கள்", "location": "சிர்டி", "tamil_quote": "\"ஆன்மீக அனுபவம் என்பது வார்த்தைகளில் சொல்ல முடியாதது; உணர்வால் மட்டுமே தெரியும்.\" — தமிழ் சித்தர் மரபு", "tags": ["ஒளி வட்டம்", "திருவிழா", "சிர்டி", "தரிசனம்", "மகாசமாதி"]}, {"id": 67, "title": "நீதிமன்ற ஆவணம் கிடைத்தது", "category": "அன்றாட வாழ்க்கை", "story": "சென்னையில் வழக்கறிஞர் ராஜகோபால் முக்கிய ஆவணம் தொலைத்தார். Deadline நாளை. 'சாய்பாபா' என்று மனதில் சொன்னார். 15 ஆண்டு திறக்கப்படாத file cabinet நினைவுக்கு வந்தது. திறந்தால் கோப்பு அங்கே. வழக்கு வெற்றியாக முடிந்தது.", "devotee": "ராஜகோபால்", "location": "சென்னை", "tamil_quote": "\"அன்றாட வாழ்வில் பாபா இருக்கிறான்; தேவைப்படும்போது கை கொடுக்கிறான்.\" — சிர்டி நம்பிக்கை", "tags": ["ஆவணம்", "நீதிமன்றம்", "file cabinet", "கிடைத்தது", "வழக்கு"]}, {"id": 68, "title": "பத்திரிகையாளர் காப்பாற்றப்பட்டார்", "category": "உயிர் காத்தல்", "story": "மும்பையில் பத்திரிகையாளர் சுரேஷ் குமார் ஊழல் வெளிப்படுத்த திட்டமிட்டார். ஆட்கள் வழிமறிக்க காத்திருந்தனர். அன்று மட்டும் வேறு வழியில் திரும்பினார். யாரோ திருப்பியது போல் உணர்ந்தார். ஊழல் வெளிப்பட்டது. நாடே அதிர்ந்தது.", "devotee": "சுரேஷ் குமார்", "location": "மும்பை", "tamil_quote": "\"யாரும் அற்றவர் அல்ல; சாய் இருக்கும்போது தனிமை என்பதே இல்லை.\" — சாய் வாக்கு", "tags": ["பத்திரிகையாளர்", "ஊழல்", "திசை", "காப்பு", "உண்மை"]}, {"id": 69, "title": "பயிர் நோயிலிருந்து காப்பு", "category": "இயற்கை அற்புதம்", "story": "அகமதுநகரில் சோமய்யா 5 ஏக்கர் கரும்பு நடவில் plant virus நோய் பரவியது. சிர்டி விபூதி தண்ணீரில் கரைத்து தெளித்தார். அயல் வயல்களில் நோய் பரவியது. சோமய்யாவின் வயலில் மட்டும் கரும்பு நின்றது. 40 டன் கரும்பு அறுவடை.", "devotee": "சோமய்யா", "location": "அகமதுநகர்", "tamil_quote": "\"ஒரு கிராமத்தின் விசுவாசம் மேகங்களை வரவழைக்கும்; பாபாவின் அன்பு எல்லையற்றது.\" — பக்தர் வாக்கு", "tags": ["கரும்பு", "நோய்", "விவசாயம்", "விபூதி", "அறுவடை"]}, {"id": 70, "title": "சிறுநீரக கல் கரைந்தது", "category": "உடல் நலம்", "story": "திருப்பூரில் ஜனகிராம் சிறுநீரகத்தில் 12mm கல். தினமும் விபூதி நீர் குடித்தார். 5 மாதத்தில் கல் மறைந்தது. 'இந்த size கல் தாமாக கரைவது மிகவும் அரிது' என்று மருத்துவர் கூறினார். சிர்டி சென்று நன்றி செலுத்தினார்.", "devotee": "ஜனகிராம்", "location": "திருப்பூர்", "tamil_quote": "\"பக்தியே மிகப் பெரிய மருந்து; சரணாகதியே உடலின் ஆரோக்கியம்.\" — சாய் சத்சரித்ரா", "tags": ["சிறுநீரக கல்", "விபூதி", "குணம்", "அறுவை", "மருத்துவர்"]}, {"id": 71, "title": "Lockdown-ல் உணவு கிடைத்தது", "category": "அன்றாட வாழ்க்கை", "story": "COVID lockdown-ல் புனேவில் தினக்கூலி குடும்பம் இரண்டு நாட்கள் சரியாக சாப்பிடவில்லை. தாயார் 'பாபா, குழந்தைகளுக்கு சோறு வேண்டும்' என்று கதறி அழுதாள். அன்று மாலையே ஒருவன் வந்து 'கனவில் ஒரு முதியவர் இந்த வீட்டிற்கு உணவு கொண்டுவிட்டு வா' என்று கூறினார் என்று சொல்லி ஒரு வாரத்திற்கான உணவுப் பொட்டலங்கள் கொடுத்தான்.", "devotee": "தினக்கூலி குடும்பம்", "location": "புனே", "tamil_quote": "\"சாய்யை மறவாதே; அவன் உன்னை மறவான் — இதுவே அன்றாட வாழ்வின் ரகசியம்.\" — சாய் வாக்கு", "tags": ["Lockdown", "COVID", "உணவு", "கனவு", "உதவி"]}, {"id": 72, "title": "பட்டாசு திசை மாறியது", "category": "உயிர் காத்தல்", "story": "கோயம்புத்தூரில் தீபாவளி நாள். ப்ரியாவின் 5 வயது மகளை நோக்கி ராக்கெட் வந்தது. 'சாய்யே!' என்று கூவினாள். ராக்கெட் 3 அடி தூரத்தில் திசை மாறியது. குழந்தைக்கு ஒரு கீறல் கூட இல்லை. 'ராக்கெட் நேரடியாக வந்தது, திடீரென்று திசை மாறியது, நம்பவே முடியவில்லை' என்று அண்டை வீட்டுக்காரர் கூறினார்.", "devotee": "ப்ரியா", "location": "கோயம்புத்தூர்", "tamil_quote": "\"ஆபத்தில் அழைத்தால் அவன் வருவான்; ஆனால் மனதில் அவன் இருக்கவேண்டும்.\" — சிர்டி உரை", "tags": ["பட்டாசு", "ராக்கெட்", "குழந்தை", "காப்பு", "தீபாவளி"]}, {"id": 73, "title": "Scuba diving-ல் காப்பு", "category": "உயிர் காத்தல்", "story": "கோவாவில் அர்ஜுன் scuba diving-ல் oxygen regulator கோளாறடைந்தது. 20 மீட்டர் ஆழம். 'சாய் ராம்' என்று மனதில் சொன்னான். பீதி நீங்கி அமைதி வந்தது. மெல்ல மேலே வந்தனர். 'நீ panic ஆகாமல் இருந்தாய், அதனால் தான் பிழைத்தாய்' என்று leader கூறினான்.", "devotee": "அர்ஜுன்", "location": "கோவா", "tamil_quote": "\"தண்ணீரில் மூழ்கியவனையும், தீயில் விழுந்தவனையும் பாபா காப்பான் — நம்பிக்கை மட்டும் வேண்டும்.\" — பக்தி இலக்கியம்", "tags": ["scuba", "கடல்", "oxygen", "அமைதி", "மீட்பு"]}, {"id": 74, "title": "பாடகரின் குரல் திரும்பியது", "category": "உடல் நலம்", "story": "திருவனந்தபுரம் பக்திப்பாட்டு பாடகர் சரவணன் Vocal cord கட்டி வந்தது. சிர்டியில் 21 நாட்கள் மௌனமாக பிரார்த்தித்தான். கனவில் 'உன் குரல் என்னுடையது, திரும்பத் தருகிறேன்' என்று பாபா கூறினார். 6 மாதத்தில் முழு குரல் வந்தது. Endoscopy-ல் கட்டி மறைந்திருந்தது. அறுவை தேவையில்லை என்று மருத்துவர் கூறினார்.", "devotee": "சரவணன்", "location": "திருவனந்தபுரம்", "tamil_quote": "\"இறைவனை நம்பு; நோய் உன்னை விட்டு விலகும். ஐயனை அழை; வலி மறையும்.\" — தமிழ் பக்தி மரபு", "tags": ["பாடகர்", "குரல்", "Vocal cord", "குணம்", "கனவு"]}, {"id": 75, "title": "நிலநடுக்கத்தில் வீடு நின்றது", "category": "உயிர் காத்தல்", "story": "லட்டூரில் ரிக்டர் 6.2 நிலநடுக்கம். தெரு முழுவதும் கட்டிடங்கள் விழுந்தன. லோகமணி குடும்பத்தின் வீட்டிற்கு ஒரு கீறல் கூட இல்லை. 'Foundation பழையது, structure பலவீனம், இது எப்படி நின்றது?' என்று அரசு பரிசோதகர் வியந்தார். வீட்டின் ஒவ்வொரு அறையிலும் சாய்பாபா படம். ஒரே ஒரு படம் சுவற்றில் நின்றது - சாய்பாபா படம்.", "devotee": "லோகமணி குடும்பம்", "location": "லட்டூர்", "tamil_quote": "\"என்னை நம்பிக்கையோடு அழைத்தால், கடல் நடுவிலும் நான் கரை காட்டுவேன்.\" — சாய்பாபா", "tags": ["நிலநடுக்கம்", "வீடு", "காப்பு", "படம்", "குடும்பம்"]}, {"id": 76, "title": "UPSC IPS வெற்றி", "category": "கல்வி", "story": "டில்லியில் UPSC aspirant அகில் நான்காவது முறை எழுதினான். 'பாபா என்னில் இரு' என்று ஒவ்வொரு நாளும் வேண்டினான். Final result: All India Rank 142. IPS cadre கிடைத்தது. 'பாபா எழுதினார், நான் கையை மட்டும் பிடித்தேன்' என்று கூறினான்.", "devotee": "அகில்", "location": "டில்லி", "tamil_quote": "\"ஆயிரம் முறை தோல்வி வந்தாலும் ஒரு முறை இறைவனை நம்பி எழு — வாழ்வு திரும்பும்.\" — சாய் வாக்கு", "tags": ["UPSC", "IPS", "rank 142", "வெற்றி", "சரணாகதி"]}, {"id": 77, "title": "சாய் ஆலயம் கட்டினான்", "category": "சேவை அற்புதம்", "story": "தமிழ்நாட்டு கிராமத்தில் கண்ணு என்ற இளைஞன் 'என் ஊரில் சாய் ஆலயம் வேண்டும்' என்று வேண்டினான். 3 ஆண்டு சேமிப்பு. ஆலயம் கட்டினான். திறப்பு நாளில் 2000 பேர் வந்தனர். தினமும் அன்னதானம் நடக்கிறது.", "devotee": "கண்ணு", "location": "தமிழ்நாடு கிராமம்", "tamil_quote": "\"சேவையே சிவம்; மனிதனை வணங்குவதே இறைவனை வணங்குவது.\" — சாய்பாபா", "tags": ["ஆலயம்", "கட்டுதல்", "அன்னதானம்", "சேவை", "கிராமம்"]}, {"id": 78, "title": "இரட்டை வரம்", "category": "குடும்ப வாழ்க்கை", "story": "நாசிக்கில் 14 ஆண்டு திருமணம், குழந்தை இல்லை. விக்ரம் சிர்டியில் 'ஒரே ஒரு குழந்தை போதும்' என்று வேண்டினான். ஒரு வருடத்தில் twins. ஆண் பெண் இரட்டையர். 'ஒன்று கேட்டேன், இரண்டு கொடுத்தார்' என்று நடுங்கினான். 'சாய்' 'ராம்' என்று பெயர் வைத்தனர்.", "devotee": "ஜோதி, விக்ரம்", "location": "நாசிக்", "tamil_quote": "\"குடும்பத்தை பாபா கட்டுகிறான்; நாம் செய்வது பிரார்த்தனை மட்டுமே.\" — சாய் வாக்கு", "tags": ["இரட்டையர்", "குழந்தை", "வரம்", "ஒன்று கேட்டு இரண்டு", "மகிழ்ச்சி"]}, {"id": 79, "title": "வெள்ளத்தில் பயணிகள் காப்பு", "category": "உயிர் காத்தல்", "story": "சிர்டி பயணம் செல்லும் 42 பேர் பேருந்தில் வெள்ளம் வந்தது. அனைவரும் 'சாய்யே!' என்று கூவினர். வெள்ளம் சிறிது குறைந்தது. புதுவழியில் கரை சேர்ந்தனர். '30 நிமிடம் கழித்து வந்திருந்தால் இல்லாதிருப்போம்' என்று டிரைவர் கூறினான்.", "devotee": "42 பயணிகள்", "location": "மகாராஷ்டிரா", "tamil_quote": "\"மரணம் கதவு தட்டும்போது, பாபாவை நினைத்தால் மரணமே வணங்கும்.\" — பக்தர் அனுபவம்", "tags": ["வெள்ளம்", "பேருந்து", "பயணிகள்", "காப்பு", "சிர்டி"]}, {"id": 80, "title": "மனைவி மனநிலை மீண்டது", "category": "உளவியல் குணம்", "story": "ஔரங்காபாத்தில் ஜகதீஷ் மனைவி சுஜாதாவிற்கு post-partum psychosis வந்தது. மருத்துவம் பலிக்கவில்லை. சிர்டி விபூதி தினமும் கொடுத்தான். ஒரு வருடத்தில் முழுமையாக இயல்பு நிலைக்கு வந்தாள். குழந்தையை அணைத்துக்கொண்டாள்.", "devotee": "ஜகதீஷ் பாட்டீல்", "location": "ஔரங்காபாத்", "tamil_quote": "\"அமைதியை தேடுபவன் சாய்யை அழை; அவன் மனதின் புயலை ஒரே நிமிடத்தில் அமைதிப்படுத்துவான்.\" — சிர்டி உரை", "tags": ["மனநிலை", "psychosis", "மனைவி", "விபூதி", "குணம்"]}, {"id": 81, "title": "Lorry திசை மாறியது", "category": "உயிர் காத்தல்", "story": "சோலாப்பூரில் முருகேஷை நோக்கி Lorry வேகமாக வந்தது. 'சாய்!' என்று கூவினான். Driver திடீரென்று ஸ்டீயரிங்கை திருப்பினான். 'என்னால் திருப்பவில்லை, யாரோ திருப்பியது போல இருந்தது' என்று கூறினான். Driver கையில் சாய்பாபா ring இருந்தது.", "devotee": "முருகேஷ்", "location": "சோலாப்பூர்", "tamil_quote": "\"யாரும் அற்றவர் அல்ல; சாய் இருக்கும்போது தனிமை என்பதே இல்லை.\" — சாய் வாக்கு", "tags": ["lorry", "ஸ்டீயரிங்", "விபத்து", "காப்பு", "ring"]}, {"id": 82, "title": "கோபம் குறைந்தது", "category": "வாழ்க்கை அற்புதம்", "story": "நாக்பூரில் கணேஷ் தேஷ்பாண்டேவிற்கு கடும் கோபப் பிரச்சனை. குடும்பம் பாதிக்கப்பட்டது. நண்பன் சாய்சரித்திரம் புத்தகம் கொடுத்தான். 'கோபம் உன்னை அல்ல, உன் குடும்பத்தை அழிக்கும்' என்ற பாபா வார்த்தைகள் மனதில் பதிந்தன. மெல்ல மெல்ல கோபம் குறைந்தது. குடும்பம் மகிழ்ந்தது.", "devotee": "கணேஷ் தேஷ்பாண்டே", "location": "நாக்பூர்", "tamil_quote": "\"நேர்மையாக வாழ்பவனை இறைவன் கைவிடமாட்டான்; காலம் கடந்தாலும் கருணை வரும்.\" — திருக்குறள் ஒலி", "tags": ["கோபம்", "குடும்பம்", "புத்தகம்", "மாற்றம்", "அமைதி"]}, {"id": 83, "title": "மகனுக்கு MNC வேலை", "category": "வாழ்க்கை அற்புதம்", "story": "சென்னையில் பாலகிருஷ்ணன் 3 ஆண்டு வேலை இல்லாத மகனுக்காக தினமும் பிரார்த்தனை. ஒரு MNC 'உங்கள் மகன் resume ஒரு சார் மூலம் கிடைத்தது' என்று interview அழைத்தது. எந்த சார் என்று தெரியவில்லை. வேலை கிடைத்தது.", "devotee": "பாலகிருஷ்ணன்", "location": "சென்னை", "tamil_quote": "\"இறைவன் தரும் தாமதம் நிராகரிப்பு அல்ல; நல்லதற்கான காத்திருப்பு.\" — சாய் அருளுரை", "tags": ["மகன்", "MNC", "வேலை", "resume", "அருள்"]}, {"id": 84, "title": "கண் அறுவை வெற்றி", "category": "உடல் நலம்", "story": "பெங்களூரில் சரோஜினியின் கணவருக்கு கண் அறுவை. மனைவி வெளியே சாய்பாபா படம் ஏந்தி பிரார்த்தனை செய்தாள். அறுவை நேர்த்தியாக நடந்தது. '20 ஆண்டுகளில் இவ்வளவு சுமுகமாக ஒரு ஆபரேஷன் செய்ததில்லை' என்று மருத்துவர் கூறினார்.", "devotee": "சரோஜினி", "location": "பெங்களூரு", "tamil_quote": "\"துயரம் வரும்போது சாய்யை நினை; அன்பர்க்கு அவன் நிழல் போல் நிற்பான்.\" — பாபா அருளுரை", "tags": ["கண்", "அறுவை", "வெற்றி", "மனைவி", "மருத்துவர்"]}, {"id": 85, "title": "தவறான பாதையிலிருந்து மீட்சி", "category": "வாழ்க்கை அற்புதம்", "story": "மும்பையில் ராஜேஷ் திருட்டு வழியில் சென்றான். ஒரு வீட்டில் திருடும்போது சாய்பாபா படத்தின் முன் நின்றான். அந்த கண்கள் தன்னை பார்க்கின்றன என்று உணர்ந்தான். கால் நடுங்கியது. பொருட்களை வைத்துவிட்டு ஓடினான். மனம் மாறி நல்வழியில் வந்தான். இன்று சமூக சேவகன்.", "devotee": "ராஜேஷ்", "location": "மும்பை", "tamil_quote": "\"வாழ்க்கையில் பாதை மறைந்தாலும் சாய் ஒளி மறைவதில்லை.\" — தமிழ் பக்தர் வாக்கு", "tags": ["திருட்டு", "மனம் மாற்றம்", "நல்வழி", "சேவை", "படம்"]}, {"id": 86, "title": "வெளிநாட்டில் நட்பு கிடைத்தது", "category": "வாழ்க்கை அற்புதம்", "story": "அமெரிக்காவில் ப்ரவீண் கடும் தனிமையால் துவண்டான். 'ஒரு நண்பனை கொடு' என்று வேண்டினான். மறுநாள் அலுவலகத்தில் ஒருவர் 'நீங்கள் சாய்பாபா பக்தரா?' என்று கேட்டார். அவரும் பக்தர். ஆழமான நட்பு ஆனது. பல நண்பர்கள் கிடைத்தனர்.", "devotee": "ப்ரவீண்", "location": "அமெரிக்கா", "tamil_quote": "\"இழப்பு என்பது இறைவன் கொடுக்கும் திருப்பம்; புதிய வாழ்வின் வாயில்.\" — சாய் ஞானம்", "tags": ["தனிமை", "நட்பு", "வெளிநாடு", "பக்தர்", "அருள்"]}, {"id": 87, "title": "மூட்டு மாற்று தேவையில்லை", "category": "உடல் நலம்", "story": "வேலூரில் கோவிந்தம்மாளுக்கு மூட்டு மாற்று அறுவை வேண்டும் என்றனர். வயதினால் ஆபத்து. குடும்பம் 6 வியாழன் விரதம். 6வது வியாழன் மூட்டு நிலை கணிசமாக மேம்பட்டிருந்தது. மாற்று அறுவை தேவையில்லை. உடற்பயிற்சி மட்டும் பரிந்துரைத்தனர்.", "devotee": "கோவிந்தம்மாள்", "location": "வேலூர்", "tamil_quote": "\"உடலை இறைவன் கட்டினான்; உயிரை அவனே காக்கிறான் — நாம் வெறும் நிமித்தம்.\" — சாய் ஞானம்", "tags": ["மூட்டு", "அறுவை", "விரதம்", "முதியவர்", "குணம்"]}, {"id": 88, "title": "நேர்மையான போலீஸ் காப்பு", "category": "வாழ்க்கை அற்புதம்", "story": "புனேவில் நேர்மையான போலீஸ் அதிகாரி ஜோஷி பொய் வழக்கில் suspend ஆனார். சாய்பாபாவிடம் சரணடைந்தார். நீதிமன்றம் தாமாகவே வழக்கை எடுத்தது. குற்றம் சாட்டியவர்களே குற்றவாளிகள் என்று நிரூபிக்கப்பட்டது. Promotion கூட கிடைத்தது.", "devotee": "மிலிந்த் ஜோஷி", "location": "புனே", "tamil_quote": "\"பாபா பக்தனுக்கு துன்பம் கொடுப்பதில்லை; பாடம் கற்பிக்கிறான் மட்டுமே.\" — சாய் சத்சரித்ரா", "tags": ["போலீஸ்", "நேர்மை", "நீதிமன்றம்", "promotion", "விடுதலை"]}, {"id": 89, "title": "பாடகி தொண்டை கட்டி மறைந்தது", "category": "உடல் நலம்", "story": "அகமதுநகரில் பக்திப்பாடல் பாடகி அனுபமாவிற்கு தொண்டையில் கட்டி. அறுவை செய்தால் பாட்டு வாழ்க்கை முடியும். சிர்டியில் 'பாபா, உன் பாடலே என் வாழ்க்கை' என்று கூவினாள். ஒரு வருடத்தில் கட்டி மறைந்தது. மீண்டும் பாடுகிறாள்.", "devotee": "அனுபமா", "location": "அகமதுநகர்", "tamil_quote": "\"விரதமும் பிரார்த்தனையும் மனித முயற்சி; அதற்கு உயிர் கொடுப்பது பாபாவின் கருணை.\" — சாய் வழக்கு", "tags": ["பாடகி", "தொண்டை கட்டி", "குணம்", "பாடல்", "வாழ்க்கை"]}, {"id": 90, "title": "நாள்பட்ட தோல் நோய் குணமடைந்தது", "category": "உடல் நலம்", "story": "கர்நாடகாவில் மோகன் 10 ஆண்டு தோல் நோயால் வாடினார். சிர்டி விபூதியை தோலில் தடவினார். 6 மாதத்தில் நோய் முற்றிலும் மறைந்தது. மருத்துவர்களே வியந்தனர்.", "devotee": "மோகன்", "location": "கர்நாடகா", "tamil_quote": "\"நோயில் சாய்யை நினைத்தவனுக்கு நொடியில் நலம் வரும்; நம்பிக்கை இருக்கட்டும்.\" — சிர்டி வாக்கியம்", "tags": ["தோல் நோய்", "விபூதி", "குணம்", "10 ஆண்டு", "மருத்துவர்"]}, {"id": 91, "title": "ஆயுட்காலம் நீட்டியது", "category": "உடல் நலம்", "story": "சோலாப்பூரில் ஒரு நோயாளிக்கு மருத்துவர் ஒரு மாதம் மட்டுமே என்று கூறினார். குடும்பம் சிர்டியில் வேண்டியது. 8 மாதம் வாழ்ந்தார். இறுதி நாட்கள் வலியே இல்லாமல் சாந்தமாக கழிந்தது. சாய் நாமம் சொல்லிக்கொண்டே கண் மூடினார்.", "devotee": "குடும்பம்", "location": "சோலாப்பூர்", "tamil_quote": "\"நம்பிக்கை என்பது மருந்தை விட வலிமையானது; பாபாவின் கருணை என்பது அமிர்தத்தை விட இனிமையானது.\" — சாய் வாக்கு", "tags": ["ஆயுள்", "நோய்", "சாந்தி", "இறுதி காலம்", "குடும்பம்"]}, {"id": 92, "title": "அனாதை ஆசிரமத்திற்கு உதவி", "category": "சேவை அற்புதம்", "story": "நாசிக்கில் சாய்சேவா ஆசிரமம் நடத்தும் பக்தருக்கு உணவு பஞ்சம். பாபாவிடம் அழுதார். அன்று மாலையே ஒரு தம்பதியர் 'கனவில் ஒரு முதியவர் இங்கு வரச் சொன்னார்' என்று பெரிய தொகை நன்கொடை கொடுத்தனர். குழந்தைகளுக்கு உணவு கிடைத்தது.", "devotee": "சாய்சேவா ஆசிரமம்", "location": "நாசிக்", "tamil_quote": "\"ஒருவனுக்கு கொடு என்று இறைவன் சொல்கிறான்; நாம் கொடுக்கும்போது இறைவனுக்கே கொடுக்கிறோம்.\" — சாய் வாக்கு", "tags": ["அனாதை", "ஆசிரமம்", "நன்கொடை", "கனவு", "சேவை"]}, {"id": 93, "title": "சக்கர நாற்காலியிலிருந்து நடை", "category": "உடல் நலம்", "story": "சிர்டியில் ஹேமலதா 5 ஆண்டு சக்கர நாற்காலியில் இருந்தாள். சமாதி மந்திரத்தில் திடீரென்று கால்களில் சுடு உணர்வு ஏற்பட்டது. கையால் ஆதாரம் எடுத்து எழுந்தாள். சில அடிகள் நடந்தாள். மக்கள் அழுது மகிழ்ந்தனர்.", "devotee": "ஹேமலதா", "location": "சிர்டி", "tamil_quote": "\"உடல் நோயை மருத்துவர் குணப்படுத்துகிறார்; ஆன்மா நோயை இறைவன் மட்டுமே தீர்க்கிறான்.\" — திருமூலர்", "tags": ["சக்கர நாற்காலி", "நடை", "சிர்டி", "அற்புதம்", "குணம்"]}, {"id": 94, "title": "விமான சீட் கிடைத்தது", "category": "அன்றாட வாழ்க்கை", "story": "சென்னை விமான நிலையத்தில் நவீன் அவசர மருத்துவ தேவைக்கு பயணம். அனைத்து சீட்களும் நிரம்பியிருந்தன. 'பாபா, அவசரம்' என்று வேண்டினான். ஒருவர் கடைசி நிமிடத்தில் ரத்து செய்திருந்தார். சீட் கிடைத்தது. சரியான நேரத்தில் சேர்ந்தான்.", "devotee": "நவீன்", "location": "சென்னை விமான நிலையம்", "tamil_quote": "\"சிறிய நம்பிக்கையும் பெரிய அற்புதம் செய்யும்; சாய் எந்த விஷயத்திலும் சிறியது என்று பார்க்கமாட்டான்.\" — சாய் அருளுரை", "tags": ["விமானம்", "சீட்", "அவசரம்", "ரத்து", "அருள்"]}, {"id": 95, "title": "கூட்டு விரதத்தின் அற்புதம்", "category": "ஆன்மீக அனுபவம்", "story": "அகமதுநகர் கிராமத்தில் 100 பக்தர்கள் 9 வியாழன் கூட்டு விரதம். 9வது வியாழன் கிராமத்தின் பழைய நோயாளிகள் பலர் ஒரே நேரத்தில் குணமடைந்தனர். கிராமத்தில் ஒரு புதிய ஆரோக்கிய உணர்வு பிறந்தது.", "devotee": "100 பக்தர்கள்", "location": "அகமதுநகர் கிராமம்", "tamil_quote": "\"கனவில் வருவது மட்டும் அல்ல; விழிப்பிலும் அவன் எங்கும் இருக்கிறான்.\" — சாய் ஞானம்", "tags": ["கூட்டு விரதம்", "கிராமம்", "குணம்", "சமூகம்", "ஆரோக்கியம்"]}, {"id": 96, "title": "12-ல் தோல்வி 95% வெற்றி", "category": "கல்வி", "story": "வேலூரில் சிவகுமாரின் மகன் 12வது வகுப்பில் குறைந்த மதிப்பெண். தந்தை 'பாபா, என் மகனுக்கு ஒரு வாய்ப்பு கொடு' என்று வேண்டினார். மகன் கடுமையாக படித்தான். மறு வருடம் 95% பெற்று அரசு மருத்துவக் கல்லூரியில் இடம் பெற்றான்.", "devotee": "சிவகுமார் குடும்பம்", "location": "வேலூர்", "tamil_quote": "\"கல்வி என்பது மட்டும் அல்ல; கடவுளின் அருள் இருந்தால் சாதனை நிச்சயம்.\" — சாய் ஞானம்", "tags": ["மாணவன்", "தோல்வி", "வெற்றி", "மருத்துவம்", "தந்தை"]}, {"id": 97, "title": "நேர்மை பலனித்தது", "category": "வாழ்க்கை அற்புதம்", "story": "இந்தூரில் ரவிகுமார் நிதி நெருக்கடியில் தெருவில் தொலைந்த வாலட் கண்டெடுத்தான். திரும்ப கொடுக்க தேடினான். உரிமையாளர் 'நீங்கள் நேர்மையாக திரும்ப தர வந்தீர்கள்' என்று நன்றியாக பெரிய தொகை கொடுத்தார். நிதி நெருக்கடி தீர்ந்தது.", "devotee": "ரவிகுமார்", "location": "இந்தூர்", "tamil_quote": "\"நேர்மையாக வாழ்பவனை இறைவன் கைவிடமாட்டான்; காலம் கடந்தாலும் கருணை வரும்.\" — திருக்குறள் ஒலி", "tags": ["வாலட்", "நேர்மை", "நிதி நெருக்கடி", "உதவி", "நன்றி"]}, {"id": 98, "title": "வயிற்று புண் குணமடைந்தது", "category": "உடல் நலம்", "story": "கும்பகோணத்தில் ஜெயராம் கடுமையான ஆல்சர். சிர்டி தீர்த்தம் குடித்தார். விபூதி சாப்பிட்டார். 3 மாதத்தில் ஆல்சர் குணமடைந்தது. 'சாய் தீர்த்தமே என் மருந்து' என்று அனைவரிடம் கூறினார்.", "devotee": "ஜெயராம்", "location": "கும்பகோணம்", "tamil_quote": "\"தியானம் செய்பவனுக்கு நோய் நெருங்காது; இறைவன் நினைப்பவனுக்கு மரணமும் வணங்கும்.\" — சாய் உபதேசம்", "tags": ["ஆல்சர்", "வயிறு", "தீர்த்தம்", "விபூதி", "குணம்"]}, {"id": 99, "title": "விவாகரத்து தடுக்கப்பட்டது", "category": "குடும்ப வாழ்க்கை", "story": "மும்பையில் ஒரு தம்பதியர் விவாகரத்து வழக்கில் இருந்தனர். குடும்ப உறவினர் சிர்டியில் 'பாபா, இந்த குழந்தைகளுக்காக காப்பாற்று' என்று வேண்டினார். கணவன் திடீரென்று மனம் மாறி 'குழந்தைகளுக்காக முயற்சிக்கலாம்' என்று கூறினான். Counseling மூலம் குடும்பம் ஒன்றானது.", "devotee": "குடும்பம்", "location": "மும்பை", "tamil_quote": "\"அன்னையின் கண்ணீர் தாரகமந்திரம்; அது இறைவனை தொட்டு கடமை செய்வான்.\" — தமிழ் மரபு", "tags": ["விவாகரத்து", "குடும்பம்", "குழந்தைகள்", "counseling", "ஒற்றுமை"]}, {"id": 100, "title": "சாய் சரணம் - இறுதி அற்புதம்", "category": "ஆன்மீக அனுபவம்", "story": "சிர்டி அருகில் வசிக்கும் ஒரு பெரியவர் இறுதி மூச்சு விடும் நிலையில் இருந்தார். குடும்பம் அழுது பிரார்த்தனை செய்தது. அவர் திடீரென்று கண் திறந்தார். 'சாய்பாபா வந்தார், இன்னும் நேரம் வரவில்லை, திரும்பு என்று கூறினார்' என்று சொன்னார். மூன்று மாதம் வாழ்ந்தார். அந்த காலத்தில் குடும்பத்தினர் அனைவரிடமும் அன்போடு விடை பெற்றார். பிறகு சாய் நாமம் சொல்லிக்கொண்டே சாந்தமாக கண் மூடினார். 'அவர் மரணம் அற்புதமான ஆசீர்வாதம்' என்று குடும்பம் கூறியது.", "devotee": "பெரியவர் குடும்பம்", "location": "சிர்டி அருகில்", "tamil_quote": "\"ஆன்மாவின் ஆழத்தில் சாய் வசிக்கிறான்; மௌனமே அவன் மொழி.\" — சிர்டி உரை", "tags": ["சாய் தரிசனம்", "இறுதி காலம்", "சாந்தி", "குடும்பம்", "ஆன்மீகம்"]}]};
+const ALL_STORIES = DATA.stories;
+
+let filteredStories = [...ALL_STORIES];
+let currentCategory = 'அனைத்தும்';
+let currentSearchTerm = '';
+let currentModalIndex = 0;
+let bgMusicOn = false;
+let readingMusicOn = false;
+
+const medAudio = document.getElementById('meditation-audio');
+medAudio.volume = 0.45;
+
+/* ════════════════════════════════
+   BACKGROUND MUSIC (auto-play)
+════════════════════════════════ */
+function tryAutoPlay(){
+  medAudio.play().then(()=>{
+    bgMusicOn = true;
+    document.getElementById('music-toggle').textContent = '⏸';
+    document.getElementById('music-dot').style.display = 'block';
+  }).catch(()=>{});
+}
+tryAutoPlay();
+['touchstart','click','pointerdown'].forEach(ev=>
+  document.addEventListener(ev, ()=>{ if(!bgMusicOn) tryAutoPlay(); }, {once:true, passive:true})
+);
+
+function toggleBgMusic(){
+  if(bgMusicOn){
+    medAudio.pause();
+    bgMusicOn = false;
+    document.getElementById('music-toggle').textContent = '▶';
+    document.getElementById('music-dot').style.display = 'none';
+  } else {
+    medAudio.play().catch(()=>{});
+    bgMusicOn = true;
+    document.getElementById('music-toggle').textContent = '⏸';
+    document.getElementById('music-dot').style.display = 'block';
+  }
+}
+
+/* Reading music: keep same audio, just show indicator when modal open */
+function startReadingMusic(){
+  if(!bgMusicOn){
+    medAudio.play().catch(()=>{});
+    bgMusicOn = true;
+    document.getElementById('music-toggle').textContent = '⏸';
+    document.getElementById('music-dot').style.display = 'block';
+  }
+  document.getElementById('reading-music-bar').classList.add('visible');
+  readingMusicOn = true;
+}
+
+function stopReadingMusic(){
+  document.getElementById('reading-music-bar').classList.remove('visible');
+  // Fade out after reading
+  const startVol = medAudio.volume;
+  let vol = startVol;
+  const fade = setInterval(()=>{
+    vol = Math.max(0, vol - 0.05);
+    medAudio.volume = vol;
+    if(vol <= 0){
+      clearInterval(fade);
+      medAudio.pause();
+      bgMusicOn = false;
+      medAudio.volume = startVol;
+      document.getElementById('music-toggle').textContent = '▶';
+      document.getElementById('music-dot').style.display = 'none';
+    }
+  }, 80);
+  readingMusicOn = false;
+}
+
+/* ════════════════════════════════
+   CATEGORIES
+════════════════════════════════ */
+function buildCategories(){
+  const scroll = document.getElementById('cat-scroll');
+  DATA.categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn';
+    btn.textContent = cat;
+    btn.onclick = () => setCategory(cat, btn);
+    scroll.appendChild(btn);
+  });
+}
+
+function setCategory(cat, el){
+  currentCategory = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  filterStories();
+}
+
+/* ════════════════════════════════
+   SEARCH & FILTER
+════════════════════════════════ */
+function filterStories(){
+  currentSearchTerm = document.getElementById('search-input').value.trim().toLowerCase();
+  filteredStories = ALL_STORIES.filter(s => {
+    const matchCat = currentCategory === 'அனைத்தும்' || s.category === currentCategory;
+    if(!matchCat) return false;
+    if(!currentSearchTerm) return true;
+    return (
+      s.title.toLowerCase().includes(currentSearchTerm) ||
+      s.story.toLowerCase().includes(currentSearchTerm) ||
+      s.location.toLowerCase().includes(currentSearchTerm) ||
+      s.devotee.toLowerCase().includes(currentSearchTerm) ||
+      s.tags.some(t => t.toLowerCase().includes(currentSearchTerm))
+    );
+  });
+  renderStories();
+}
+
+/* ════════════════════════════════
+   RENDER STORIES
+════════════════════════════════ */
+function renderStories(){
+  const container = document.getElementById('stories-container');
+  const empty = document.getElementById('empty-state');
+  const info = document.getElementById('results-info');
+
+  container.innerHTML = '';
+
+  if(!filteredStories.length){
+    empty.style.display = 'block';
+    info.textContent = '';
+    return;
+  }
+  empty.style.display = 'none';
+  info.textContent = `${filteredStories.length} கதைகள் காட்டப்படுகின்றன`;
+
+  filteredStories.forEach((story, i) => {
+    const card = createCard(story, i);
+    container.appendChild(card);
+    // Staggered entrance animation
+    setTimeout(() => card.classList.add('card-enter'), i * 35);
+  });
+}
+
+const CATEGORY_ICONS = {
+  'உடல் நலம்':'💊','உயிர் காத்தல்':'🙏','வாழ்க்கை அற்புதம்':'✨',
+  'குடும்ப வாழ்க்கை':'👨‍👩‍👧','கல்வி':'📚','இயற்கை அற்புதம்':'🌧️',
+  'ஆன்மீக அனுபவம்':'🕯️','அன்றாட வாழ்க்கை':'🌼','உளவியல் குணம்':'🌿',
+  'சேவை அற்புதம்':'❤️'
+};
+
+function createCard(story, idx){
+  const card = document.createElement('div');
+  card.className = 'story-card';
+  card.style.setProperty('--cd', (idx * 0.4) + 's');
+  card.setAttribute('role', 'button');
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('aria-label', story.title);
+
+  const icon = CATEGORY_ICONS[story.category] || '🪔';
+  const preview = story.story.slice(0, 120) + '...';
+  const tagsHtml = story.tags.slice(0,3).map(t => `<span class="tag">${t}</span>`).join('');
+
+  card.innerHTML = `
+    <div class="card-cat">
+      <span class="cat-tag">${icon} ${story.category}</span>
+      <span class="card-num">#${story.id}</span>
+    </div>
+    <div class="card-title">${story.title}</div>
+    <div class="card-preview">${preview}</div>
+    <div class="card-divider"></div>
+    <div class="card-meta">
+      <span class="meta-loc">📍 ${story.location}</span>
+      <span class="meta-read">படிக்க →</span>
+    </div>
+    <div class="card-tags">${tagsHtml}</div>
+  `;
+
+  card.onclick = () => openModal(idx);
+  card.onkeydown = e => { if(e.key === 'Enter' || e.key === ' ') openModal(idx); };
+  return card;
+}
+
+/* ════════════════════════════════
+   MODAL — STORY READER
+════════════════════════════════ */
+function openModal(filteredIdx){
+  currentModalIndex = filteredIdx;
+  renderModal(filteredStories[filteredIdx]);
+  document.getElementById('story-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modal-body').scrollTop = 0;
+  document.getElementById('modal-progress-bar').style.width = '0%';
+  startReadingMusic();
+  spawnPetals();
+}
+
+function closeModal(){
+  document.getElementById('story-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  stopReadingMusic();
+}
+
+function renderModal(story){
+  const icon = CATEGORY_ICONS[story.category] || '🪔';
+  document.getElementById('modal-cat-tag').textContent = icon + ' ' + story.category;
+  document.getElementById('modal-title').textContent = story.title;
+  document.getElementById('modal-loc').innerHTML = '📍 ' + story.location;
+  document.getElementById('modal-dev').innerHTML = '🙏 ' + story.devotee;
+  document.getElementById('modal-story-text').textContent = story.story;
+  document.getElementById('modal-quote-text').textContent = story.tamil_quote;
+
+  // Nav buttons
+  document.getElementById('prev-btn').disabled = currentModalIndex <= 0;
+  document.getElementById('next-btn').disabled = currentModalIndex >= filteredStories.length - 1;
+}
+
+function navigateStory(dir){
+  const newIdx = currentModalIndex + dir;
+  if(newIdx < 0 || newIdx >= filteredStories.length) return;
+  currentModalIndex = newIdx;
+  renderModal(filteredStories[newIdx]);
+  document.getElementById('modal-body').scrollTop = 0;
+  document.getElementById('modal-progress-bar').style.width = '0%';
+  spawnPetals();
+}
+
+function updateReadProgress(){
+  const body = document.getElementById('modal-body');
+  const pct = (body.scrollTop / (body.scrollHeight - body.clientHeight)) * 100;
+  document.getElementById('modal-progress-bar').style.width = Math.min(pct, 100) + '%';
+}
+
+/* ════════════════════════════════
+   FLOATING PETALS (on modal open)
+════════════════════════════════ */
+const PETALS = ['🌸','🌺','🌹','🌼','🌻'];
+function spawnPetals(){
+  for(let i = 0; i < 8; i++){
+    setTimeout(()=>{
+      const el = document.createElement('div');
+      el.className = 'float-petal';
+      el.textContent = PETALS[Math.floor(Math.random()*PETALS.length)];
+      el.style.left = Math.random()*100 + 'vw';
+      el.style.top = '-30px';
+      el.style.fontSize = (12 + Math.random()*14) + 'px';
+      const dur = 4 + Math.random()*3;
+      el.style.animationDuration = dur + 's';
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(), dur*1000);
+    }, i*150);
+  }
+}
+
+/* ════════════════════════════════
+   BACKGROUND PARTICLE CANVAS
+════════════════════════════════ */
+const bgC = document.getElementById('bg-canvas');
+const bgX = bgC.getContext('2d');
+function resizeBg(){ bgC.width=innerWidth; bgC.height=innerHeight; }
+resizeBg(); window.addEventListener('resize', resizeBg);
+
+class Particle{
+  constructor(){this.reset(true);}
+  reset(rand){
+    this.x = Math.random()*bgC.width;
+    this.y = rand ? Math.random()*bgC.height : bgC.height+10;
+    this.vx = (Math.random()-.5)*.3;
+    this.vy = -(0.18+Math.random()*.45);
+    this.r = 0.5+Math.random()*1.6;
+    this.life = 1; this.decay = 0.0012+Math.random()*.0028;
+    this.tw = Math.random()*Math.PI*2;
+    this.star = Math.random()<.25;
+  }
+  update(){
+    this.x+=this.vx; this.y+=this.vy;
+    this.life-=this.decay; this.tw+=.06;
+    if(this.life<=0||this.y<-10) this.reset(false);
+  }
+  draw(){
+    const tw = Math.sin(this.tw)*.4+.6;
+    const a = this.life*tw*.45;
+    if(!this.star){
+      bgX.shadowBlur=4; bgX.shadowColor='rgba(255,210,0,.6)';
+      bgX.fillStyle=`rgba(255,210,55,${a})`;
+      bgX.beginPath(); bgX.arc(this.x,this.y,this.r,0,Math.PI*2); bgX.fill();
+    } else {
+      bgX.shadowBlur=8; bgX.shadowColor='rgba(255,240,180,.8)';
+      bgX.fillStyle=`rgba(255,242,185,${a*.85})`;
+      bgX.save(); bgX.translate(this.x,this.y); bgX.beginPath();
+      for(let i=0;i<8;i++){
+        const ag=(i/8)*Math.PI*2, rr=i%2===0?this.r*2.2:this.r*.4;
+        i===0?bgX.moveTo(Math.cos(ag)*rr,Math.sin(ag)*rr):bgX.lineTo(Math.cos(ag)*rr,Math.sin(ag)*rr);
+      }
+      bgX.closePath(); bgX.fill(); bgX.restore();
+    }
+    bgX.shadowBlur=0;
+  }
+}
+
+class LightRay{
+  constructor(){this.init();}
+  init(){
+    this.cx=bgC.width*(.3+Math.random()*.4);
+    this.ang=-Math.PI/2+(Math.random()-.5)*.7;
+    this.len=bgC.height*(.5+Math.random()*.5);
+    this.w=25+Math.random()*65;
+    this.ph=Math.random()*Math.PI*2;
+    this.sp=0.003+Math.random()*.004;
+  }
+  update(){this.ph+=this.sp;}
+  draw(){
+    const op=0.008+Math.abs(Math.sin(this.ph))*.018;
+    const ex=this.cx+Math.cos(this.ang)*this.len,ey=Math.sin(this.ang)*this.len;
+    const g=bgX.createLinearGradient(this.cx,0,ex,ey);
+    g.addColorStop(0,`rgba(255,215,0,${op})`); g.addColorStop(1,'rgba(255,200,80,0)');
+    bgX.save(); bgX.translate(this.cx,0); bgX.rotate(this.ang+Math.PI/2);
+    bgX.beginPath();
+    bgX.moveTo(-this.w/2,0); bgX.lineTo(this.w/2,0);
+    bgX.lineTo(this.w*.33,this.len); bgX.lineTo(-this.w*.33,this.len);
+    bgX.closePath(); bgX.fillStyle=g; bgX.fill(); bgX.restore();
+  }
+}
+
+const particles = Array.from({length:55},()=>new Particle());
+const rays = Array.from({length:3},()=>new LightRay());
+
+function bgLoop(){
+  bgX.clearRect(0,0,bgC.width,bgC.height);
+  rays.forEach(r=>{r.update();r.draw();});
+  particles.forEach(p=>{p.update();p.draw();});
+  requestAnimationFrame(bgLoop);
+}
+bgLoop();
+
+/* ════════════════════════════════
+   SCROLL TO TOP VISIBILITY
+════════════════════════════════ */
+window.addEventListener('scroll',()=>{
+  const btn = document.getElementById('scroll-top');
+  btn.classList.toggle('visible', window.scrollY > 400);
+},{passive:true});
+
+/* ════════════════════════════════
+   KEYBOARD NAVIGATION
+════════════════════════════════ */
+document.addEventListener('keydown', e => {
+  const modal = document.getElementById('story-modal');
+  if(!modal.classList.contains('open')) return;
+  if(e.key==='Escape') closeModal();
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') navigateStory(1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') navigateStory(-1);
+});
+
+/* ════════════════════════════════
+   INIT
+════════════════════════════════ */
+buildCategories();
+filterStories();
+
+console.log('சாயின் அற்புத கதைகள் — Om Sai Ram 🙏');
+</script>
+</body>
+</html>
